@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
-import boxVideo from "../../assets/box-video.mp4"
+import Lottie from "lottie-react";
+import heroAnimation from "../../assets/bg-animation.json";
 
 export default function Hero() {
   const { width, height } = useWindowSize();
@@ -20,15 +21,7 @@ export default function Hero() {
       className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center !bg-transparent "
 
     >
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover brightness-[25%] z-[-1]"
-      >
-        <source src={boxVideo} type="video/mp4" />
-      </video>
+      <Lottie className="absolute opacity-[75%] dark:opacity-35 top-0 left-0 w-full scale-110 h-full z-[-1] " animationData={heroAnimation} />
 
       {/* Animated Huge Text */}
       <motion.h1
@@ -41,17 +34,16 @@ export default function Hero() {
         <motion.span
           animate={{ textShadow: "0px 0px 12px rgba(99, 102, 241, 0.8)" }}
           transition={{ repeat: Infinity, repeatType: "mirror", duration: 1 }}
-          className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-transparent bg-clip-text"
+          className="bg-gradient-to-br from-purple-500 to-indigo-700 text-transparent bg-clip-text"
         >
           Your Monthly Box
-        </motion.span>
-        <br />
-        <motion.span
-          animate={{ textShadow: "0px 0px 12px rgba(99, 102, 241, 0.8)" }}
-          transition={{ repeat: Infinity, repeatType: "mirror", duration: 1 }}
-          className="text-indigo-600 dark:text-indigo-400"
-        >
-          of Surprises
+          <p
+            animate={{ textShadow: "0px 0px 12px rgba(99, 102, 241, 0.8)" }}
+            transition={{ repeat: Infinity, repeatType: "mirror", duration: 1 }}
+            className="text-indigo-600"
+          >
+            of Surprises
+          </p>
         </motion.span>
       </motion.h1>
 
@@ -61,7 +53,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 1.5 }}
         viewport={{ once: true }}
-        className="mt-4 text-lg md:text-2xl text-gray-700 dark:text-gray-300 max-w-2xl"
+        className="mt-4 text-lg md:text-2xl text-gray-800 dark:text-gray-300 max-w-2xl"
       >
         Get a curated box of unique products delivered to your doorstep every month.
       </motion.p>

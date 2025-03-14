@@ -13,6 +13,7 @@
     "@react-three/drei": "^10.0.4",
     "@react-three/fiber": "^9.1.0",
     "framer-motion": "^12.4.10",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.477.0",
     "react": "^19.0.0",
     "react-confetti": "^6.4.0",

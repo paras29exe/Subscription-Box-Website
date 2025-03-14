@@ -16,6 +16,11 @@ body{
   }
 }
 
+.canvas-container>div>canvas{
+  width: 100% !important;
+  height: 100% !important;
+}
+
 #hero-text{
   font-weight: 800;
 
