@@ -26,7 +26,7 @@ const genres = [
           price: 19.99,
           rating: 4.7,
           availability: "In Stock",
-        },
+        }
       ],
     },
     {
@@ -62,7 +62,7 @@ const genres = [
         {
           id: 5,
           name: "Wireless Earbuds",
-          image: "https://images.unsplash.com/photo-1606220945772-9e4291fe4d8d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGVhcmJ1ZHN8ZW58MHx8MHx8fDA%3D",
+          image: "https://www.apple.com/v/airpods-pro/m/images/meta/og__eui2mpgzwyaa_specs.png",
           price: 129.99,
           rating: 4.6,
           availability: "In Stock",
@@ -85,16 +85,16 @@ const genres = [
       items: [
         {
           id: 7,
-          name: "Aromatherapy Candle",
-          image: "https://images.unsplash.com/photo-1603394633860-c1ba5c5355e3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbmRsZXN8ZW58MHx8MHx8fDA%3D",
+          name: "Face Serum",
+          image: "https://images-eu.ssl-images-amazon.com/images/I/51YDAPq1JSL._AC_UL600_SR600,600_.jpg",
           price: 24.99,
           rating: 4.4,
           availability: "In Stock",
         },
         {
           id: 8,
-          name: "Face Mask Kit",
-          image: "https://images.unsplash.com/photo-1591348278863-a8fb3887e2aa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGZhY2UlMjBtYXNrfGVufDB8fDB8fHww",
+          name: "Sunscreen",
+          image: "https://cdn.kindlife.in/images/detailed/160/abc.jpg?t=1713956514",
           price: 19.99,
           rating: 4.2,
           availability: "Out of Stock",
@@ -127,8 +127,8 @@ export default function Customize() {
   };
 
   return (
-    <div className="p-8 bg-gray-50 dark:bg-gray-900">
-      <h1 className="text-3xl font-bold text-center mb-8 dark:text-white">
+    <div className="p-4 md:p-6 lg:p-8">
+      <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 dark:text-white">
         Customize Your Box
       </h1>
 
@@ -143,7 +143,7 @@ export default function Customize() {
       />
 
       {/* Items Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
         {genres
           .find((g) => g.id === selectedGenre)
           .items.map((item) => (

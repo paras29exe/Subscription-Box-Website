@@ -99,7 +99,7 @@ export default function SubscriptionPlans() {
       <p className="text-center text-gray-600 dark:text-gray-400 mt-4">Pick your favorite genre and subscription plan.</p>
 
       {/* Step 1: Choose Genre */}
-      <div className="max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+      <div className="max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
         {genres.map((genre, index) => (
           <GenreCard key={index} plansRef={plansRef} genre={genre} index={index} selectedGenre={selectedGenre} handleGenreSelect={handleGenreSelect} />
 

@@ -16,14 +16,14 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-950 text-gray-200 shadow-lg sticky top-0 z-50">
-      <div className="w-5/6 mx-auto px-4 flex justify-between items-center h-16">
+      <div className="w-full lg:w-5/6 mx-auto lg:px-2 px-12 flex justify-between items-center h-16">
         {/* Logo */}
         <NavLink to="/" className="text-3xl font-bold bg-gradient-to-r from-pink-500 to-indigo-600 text-transparent bg-clip-text">
           GetMeABox
         </NavLink>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden lg:flex space-x-8">
           {navItems.map(({ name, path }) => (
             <NavLink
               key={path}
@@ -42,7 +42,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-300"
+          className="lg:hidden text-gray-300"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -56,7 +56,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-gray-900 text-gray-300"
+            className="lg:hidden bg-gray-900 text-gray-300"
           >
             {navItems.map(({ name, path }) => (
               <NavLink
