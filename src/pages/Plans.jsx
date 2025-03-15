@@ -94,27 +94,26 @@ export default function SubscriptionPlans() {
   }, [selectedGenre]);
 
   return (
-    <section className="min-h-screen bg-gradient-to-b  dark:from-black dark:to-gray-900 text-gray-900 dark:text-gray-200 py-20 transition-all">
-      <h2 className="text-5xl font-bold text-center text-indigo-600 dark:text-indigo-400">Choose Your Subscription</h2>
-      <p className="text-center text-gray-600 dark:text-gray-400 mt-4">Pick your favorite genre and subscription plan.</p>
+    <section className="min-h-screen p-4 md:p-6 lg:p-8 transition-all">
+      <h2 className="text-3xl sm:text-5xl font-bold text-center text-indigo-600 dark:text-indigo-400">Choose Your Subscription</h2>
+      <h3 className="text-center text-gray-700 dark:text-gray-300 mt-4">Pick your favorite genre and subscription plan.</h3>
 
       {/* Step 1: Choose Genre */}
-      <div className="max-w-6xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
+      <div className=" mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
         {genres.map((genre, index) => (
           <GenreCard key={index} plansRef={plansRef} genre={genre} index={index} selectedGenre={selectedGenre} handleGenreSelect={handleGenreSelect} />
-
         ))}
 
         {/* More to Come Card (Non-Interactive & Different Color) */}
         <motion.div
-          className="p-6 flex flex-col items-center justify-center rounded-2xl shadow-lg transition-all 
-               bg-gradient-to-r from-purple-300 to-blue-300 dark:from-purple-800 dark:to-blue-800"
+          className="p-1.5 sm:p-3 rounded-lg shadow-lg transition-all 
+               bg-gradient-to-r from-purple-300 to-blue-300 dark:from-purple-800 dark:to-indigo-800"
         >
           <div className="w-full aspect-square flex items-center justify-center bg-purple-500/30  rounded-lg">
             <Lottie className="w-3/4 aspect-square" animationData={comingSoonAnimation} />
           </div>
-          <h3 className="text-2xl font-bold mt-4 text-gray-800 dark:text-gray-200">More to Come Soon...</h3>
-          <p className="text-gray-700 dark:text-gray-300 mt-2 text-center">
+          <h3 className="text-base sm:text-xl font-bold mt-4 text-gray-800 dark:text-gray-200 text-center">More to Come Soon...</h3>
+          <p className="text-xxs sm:text-xs lg:text-sm text-gray-700 dark:text-gray-300 mt-2 text-center">
             Stay tuned for exciting new genres coming your way!
           </p>
         </motion.div>

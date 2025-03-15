@@ -48,7 +48,7 @@ export default function Hero() {
       </motion.h1>
 
       {/* Subtitle */}
-      <motion.p
+      <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 1.5 }}
@@ -56,7 +56,7 @@ export default function Hero() {
         className="mt-4 text-lg md:text-2xl text-gray-800 dark:text-gray-300 max-w-2xl"
       >
         Get a curated box of unique products delivered to your doorstep every month.
-      </motion.p>
+      </motion.h2>
 
       {/* Animated CTA Button with Confetti on Click */}
       <motion.button
@@ -65,7 +65,7 @@ export default function Hero() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2, duration: 1.5, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="mt-6 px-8 py-3 text-lg font-semibold text-white bg-gradient-to-br from-zinc-600 to-black dark:from-gray-700 dark:to-gray-900 rounded-full shadow-lg hover:bg-indigo-700 dark:hover:bg-indigo-500 transition-all duration-300 z-10"
+        className="mt-6 px-8 py-3 text-lg font-semibold text-white bg-gradient-to-br from-zinc-600 to-black dark:from-gray-700 dark:to-gray-950 rounded-full shadow-lg hover:bg-indigo-700 dark:hover:bg-indigo-500 transition-all duration-300 z-10"
       >
         Subscribe Now
       </motion.button>

@@ -32,7 +32,7 @@ const genres = [
     {
       id: "snacks",
       name: "Snacks",
-      unlocked: true,
+      unlocked: false,
       subscribed: false,
       items: [
         {
@@ -127,8 +127,8 @@ export default function Customize() {
   };
 
   return (
-    <div className="p-4 md:p-6 lg:p-8">
-      <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 dark:text-white">
+    <div className="p-4 min-h-screen md:p-6 lg:p-8">
+      <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 text-indigo-600 dark:text-indigo-400">
         Customize Your Box
       </h1>
 
@@ -143,7 +143,7 @@ export default function Customize() {
       />
 
       {/* Items Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 lg:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2 lg:gap-4">
         {genres
           .find((g) => g.id === selectedGenre)
           .items.map((item) => (

@@ -24,7 +24,7 @@ export default function FAQ() {
             whileTap={{ scale: 0.95 }}
           >
             <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{faq.question}</h3>
+              <p className="text-lg font-semibold text-gray-900 dark:text-gray-100">{faq.question}</p>
               <span className="text-indigo-600 dark:text-indigo-400">
                 {openIndex === index ? "−" : "+"}
               </span>

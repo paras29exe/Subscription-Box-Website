@@ -12,9 +12,11 @@ export default function ItemCard({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "tween", duration: 0.1 }}
-      className={`relative p-2 lg:p-4 pb-2 rounded-xl shadow-md cursor-pointer transition-all ${isSelected ? "ring-2 ring-purple-600" : "hover:shadow-lg"
-        } ${!isUnlocked ? "opacity-50 cursor-not-allowed" : ""
-        } bg-gray-100 dark:bg-zinc-800`}
+      className={`relative bg-gray-100 dark:bg-zinc-900 flex flex-col gap-3 p-2 rounded-xl shadow-md cursor-pointer transition-all
+        ${isSelected ? "ring-2 ring-purple-600" : "hover:shadow-lg"}
+        ${!isUnlocked ? "opacity-50 cursor-not-allowed" : ""} 
+        ${item.availability == "Out of Stock" && isUnlocked ? "brightness-50" : ""}
+        `}
     >
       {/* Lock Icon for Locked Genres */}
       {!isUnlocked && (
@@ -24,7 +26,7 @@ export default function ItemCard({
       )}
 
       {/* Item Image */}
-      <div className="w-full aspect-square rounded-lg overflow-hidden">
+      <div className="w-full aspect-[5/4] rounded-lg overflow-hidden">
         <img
           src={item.image}
           alt={item.name}
@@ -33,16 +35,15 @@ export default function ItemCard({
       </div>
 
       {/* Item Details */}
-      <div className="mt-4">
-        <h3 className="text-sm lg:text-lg font-semibold dark:text-white">{item.name}</h3>
-        <p className="text-xs lg:text-base text-gray-600 dark:text-gray-300 mt-1">
+      <div className="">
+        <p className="text-sm sm:text-base lg:text-lg  font-semibold dark:text-white">{item.name}</p>
+        <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">
           Worth - ${item.price.toFixed(2)}
         </p>
-
         <p
-          className={`mt-1 text-xs lg:text-sm ${item.availability === "In Stock"
-              ? "text-green-600 dark:text-green-400"
-              : "text-red-600 dark:text-red-400"
+          className={`mt-1 text-xs  ${item.availability === "In Stock"
+            ? "text-green-600 dark:text-green-400"
+            : "text-red-600 dark:text-red-400"
             }`}
         >
           {item.availability}
@@ -50,11 +51,12 @@ export default function ItemCard({
       </div>
 
       {/* Add/Remove Button */}
-      <div className="mt-4">
+      <div className="">
         {isUnlocked && (
           <button
             onClick={isSelected ? onRemoveFromBox : onAddToBox}
-            className={`w-full px-4 py-1 lg:py-2 rounded-md text-xs lg:text-sm font-bold disabled:cursor-not-allowed ${isSelected
+            className={`w-full px-4 py-1 lg:py-2 rounded-md text-xs lg:text-sm font-bold disabled:cursor-not-allowed
+               ${isSelected
                 ? "bg-red-500 text-white hover:bg-red-600"
                 : "dark:bg-white dark:text-black bg-black text-white hover:bg-gray-300"
               }

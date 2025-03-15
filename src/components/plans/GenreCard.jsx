@@ -10,26 +10,26 @@ export default function GenreCard({ genre, index, selectedGenre, handleGenreSele
       whileTap={{ scale: 0.98 }} // Light tap effect
       transition={{ type: "tween", duration: 0.1 }} // Fast and snappy transition
       onClick={() => handleGenreSelect(genre.genre)}
-      className={`relative p-6 rounded-2xl shadow-lg cursor-pointer transition-all 
+      className={`relative p-1.5 sm:p-3 rounded-lg shadow-lg cursor-pointer transition-all 
         border-2 border-transparent bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg
         ${isSelected ? "border-yellow-400 shadow-yellow-400/30" : "hover:shadow-md hover:border-purple-300"}
       `}
     >
       {/* Image Section */}
-      <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-md">
+      <div className="relative w-full aspect-square rounded-lg overflow-hidden shadow-md">
         <motion.img
           src={genre.image}
           alt={genre.name}
-          className="w-full h-full object-cover rounded-xl"
+          className="w-full h-full object-cover rounded-lg"
           whileHover={{ scale: 1.05 }} // Subtle zoom on hover
           transition={{ type: "tween", duration: 0.1 }} // Fast transition
         />
       </div>
 
       {/* Text Content */}
-      <div className="mt-6 text-center">
-        <h3 className="text-2xl font-bold text-white">{genre.name}</h3>
-        <p className="text-gray-200 mt-2 text-sm">{genre.description}</p>
+      <div className="mt-4 text-center">
+        <h3 className="text-base sm:text-xl font-bold text-white">{genre.name}</h3>
+        <p className="text-gray-200 mt-2 text-xxs sm:text-xs lg:text-sm">{genre.description}</p>
       </div>
 
       {/* Selected Indicator */}
