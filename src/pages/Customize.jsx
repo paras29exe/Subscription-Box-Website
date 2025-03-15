@@ -127,13 +127,13 @@ export default function Customize() {
   };
 
   return (
-    <div className="p-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div className="p-8 bg-gray-50 dark:bg-gray-900">
       <h1 className="text-3xl font-bold text-center mb-8 dark:text-white">
         Customize Your Box
       </h1>
 
       {/* Selected Items Count by Genre */}
-      <SelectedItemsCount genres={genres} selectedItems={selectedItems} />
+      {/* <SelectedItemsCount genres={genres} selectedItems={selectedItems} /> */}
 
       {/* Genre Tabs */}
       <GenreTabs

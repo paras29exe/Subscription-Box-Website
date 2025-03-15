@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import GenreCard from "../components/plans/GenreCard";
 import { FaCheckCircle } from "react-icons/fa";
 import PricingPlans from "../components/plans/PricingCard";
+import Lottie from "lottie-react";
+import comingSoonAnimation from "../assets/coming-soon.json";
 
 const genres = [
   {
@@ -81,6 +83,7 @@ export default function SubscriptionPlans() {
   const handleGenreSelect = (genre) => {
     setSelectedGenre(prev => prev === genre ? null : genre);
     setSelectedPlan(selectedGenre ? selectedPlan : null);
+
     !selectedGenre && setTimeout(() => {
       plansRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 300); // Delay to ensure state updates first
@@ -107,8 +110,8 @@ export default function SubscriptionPlans() {
           className="p-6 flex flex-col items-center justify-center rounded-2xl shadow-lg transition-all 
                bg-gradient-to-r from-purple-300 to-blue-300 dark:from-purple-800 dark:to-blue-800"
         >
-          <div className="w-full aspect-square flex items-center justify-center bg-purple-200 dark:bg-purple-700 rounded-lg">
-            <span className="text-4xl text-gray-700 dark:text-gray-300">🚀</span>
+          <div className="w-full aspect-square flex items-center justify-center bg-purple-500/30  rounded-lg">
+            <Lottie className="w-3/4 aspect-square" animationData={comingSoonAnimation} />
           </div>
           <h3 className="text-2xl font-bold mt-4 text-gray-800 dark:text-gray-200">More to Come Soon...</h3>
           <p className="text-gray-700 dark:text-gray-300 mt-2 text-center">

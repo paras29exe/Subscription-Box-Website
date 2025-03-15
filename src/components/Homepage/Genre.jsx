@@ -1,7 +1,8 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { motion } from "framer-motion";
+import { useFrame } from "@react-three/fiber";
 
 const genres = [
   {
@@ -56,14 +57,29 @@ const genres = [
     }
   },
 ];
-const Model = ({ path, position, scale }) => {
-  const { scene } = useGLTF(path, true);
-  
-  return <primitive object={scene} scale={scale} position={position} />
+const RotatingModel = ({ path, position, scale }) => {
+  const { scene } = useGLTF(path);
+  const modelRef = useRef();
+  // const [rotationY, setRotationY] = useState(0);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setRotationY(window.scrollY * 0.005); // Adjust sensitivity
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+
+  // useFrame(() => {
+  //   if (modelRef.current) {
+  //     modelRef.current.rotation.y = rotationY;
+  //   }
+  // });
+  // console.log("hello")
+  return <primitive ref={modelRef} object={scene} scale={scale} position={position} />;
 };
 
 export default function Genres() {
-  console.log("hello")
   return (
     <section className="py-16 bg-gray-200 dark:bg-zinc-900 text-gray-900 dark:text-gray-300 overflow-hidden transition-colors duration-300">
       <h2 className="text-4xl font-bold text-center mb-12">
@@ -91,7 +107,7 @@ export default function Genres() {
               <PerspectiveCamera makeDefault position={genre.model.cameraPosition} />
               
               <Suspense fallback children={<p> Loading....</p>}>
-                <Model path={genre.model.modelPath} scale={Number(genre.model.scale)} position={genre.model.objectPosition} />
+              <RotatingModel path={genre.model.modelPath} scale={Number(genre.model.scale)} position={genre.model.objectPosition} />
               </Suspense>
             </Canvas>
 
@@ -100,7 +116,7 @@ export default function Genres() {
               className="w-full md:w-1/2 text-center md:text-left"
               initial={{ x: (50 * ((-1) ** index)), opacity: 0, scale: 0.9 }}
               whileInView={{ x: 0, opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: index * 0.15, ease: "easeInOut" }}
+              transition={{ duration: 1.2, delay: 0.15, ease: "easeInOut" }}
               viewport={{ once: true }}
             >
               <h3 className="text-3xl font-bold text-indigo-400 dark:text-indigo-500">
@@ -111,9 +127,6 @@ export default function Genres() {
           </motion.div>
         ))}
       </div>
-
-
-
     </section>
   );
 }

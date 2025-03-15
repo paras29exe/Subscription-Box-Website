@@ -21,7 +21,7 @@ export default function Hero() {
       className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center !bg-transparent "
 
     >
-      <Lottie className="absolute opacity-[75%] dark:opacity-35 top-0 left-0 w-full scale-110 h-full z-[-1] " animationData={heroAnimation} />
+      <Lottie className="absolute opacity-[75%] dark:brightness-[40%] top-0 left-0 w-full scale-110 h-full z-[-1] " animationData={heroAnimation} />
 
       {/* Animated Huge Text */}
       <motion.h1

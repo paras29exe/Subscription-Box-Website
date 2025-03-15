@@ -1,14 +1,14 @@
 export default function SelectedItemsCount({ genres, selectedItems }) {
     return (
-      <div className="mb-8 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md">
+      <div className="mb-8 p-4 bg-white dark:bg-gray-600 rounded-xl shadow-md sticy top-24 z-10">
         <h2 className="text-xl font-bold mb-4 dark:text-white">
-          Selected Items by Genre
+          Selected Items 
         </h2>
         <div className="flex gap-4">
           {genres.map((genre) => (
             <div
               key={genre.id}
-              className="px-4 py-2 bg-purple-100 dark:bg-gray-700 rounded-full"
+              className="px-4 py-2 bg-purple-100 dark:bg-zinc-800 rounded-lg"
             >
               <span className="font-semibold text-purple-600 dark:text-purple-400">
                 {genre.name}:
