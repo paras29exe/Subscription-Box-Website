@@ -32,7 +32,7 @@ const genres = [
     }
   },
   {
-    name: "🔌 Tech & Gadgets Box",
+    name: "🔌 TechMystery Box",
     description:
       "Stay ahead of the curve with cutting-edge tech! This box delivers innovative gadgets, smart accessories, and the coolest new tech gear to keep you on the front line of innovation.",
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",

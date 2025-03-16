@@ -10,7 +10,6 @@ const testimonials = [
 
 export default function Testimonials() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false });
 
   return (
     <section ref={ref} className="py-10  bg-gray-200 dark:bg-zinc-900">
