@@ -20,7 +20,7 @@ const genres = [
     image: "https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNoaXBzfGVufDB8fDB8fHww",
   },
   {
-    name: "🔌 Tech & Gadgets Box",
+    name: "🔌 TechMystery Box",
     genre: "tech",
     description: "Discover the coolest and latest tech gadgets straight to your doorstep.",
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
@@ -99,15 +99,15 @@ export default function SubscriptionPlans() {
       <h3 className="text-center text-gray-700 dark:text-gray-300 mt-4">Pick your favorite genre and subscription plan.</h3>
 
       {/* Step 1: Choose Genre */}
-      <div className=" mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+      <div className=" mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
         {genres.map((genre, index) => (
           <GenreCard key={index} plansRef={plansRef} genre={genre} index={index} selectedGenre={selectedGenre} handleGenreSelect={handleGenreSelect} />
         ))}
 
         {/* More to Come Card (Non-Interactive & Different Color) */}
         <motion.div
-          className="p-1.5 sm:p-3 rounded-lg shadow-lg transition-all 
-               bg-gradient-to-r from-purple-300 to-blue-300 dark:from-purple-800 dark:to-indigo-800"
+          className="p-1.5 sm:p-3 rounded-lg shadow-lg transition-all
+           bg-gradient-to-r from-purple-300 to-blue-300 dark:from-purple-800 dark:to-indigo-800"
         >
           <div className="w-full aspect-square flex items-center justify-center bg-purple-500/30  rounded-lg">
             <Lottie className="w-3/4 aspect-square" animationData={comingSoonAnimation} />

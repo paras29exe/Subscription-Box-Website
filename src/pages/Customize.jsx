@@ -2,6 +2,7 @@ import { useState } from "react";
 import GenreTabs from "../components/BoxesPage/GenreTabs";
 import ItemCard from "../components/BoxesPage/ItemCard";
 import SelectedItemsCount from "../components/BoxesPage/SelectedItemsCount";
+import { useCart } from "../context/cart";
 
 // Mock data for genres and items
 const genres = [
@@ -101,30 +102,10 @@ const genres = [
         },
       ],
     },
-  ];
+];
 
 export default function Customize() {
   const [selectedGenre, setSelectedGenre] = useState(genres[0].id);
-  const [selectedItems, setSelectedItems] = useState({
-    books: [],
-    snacks: [],
-    tech: [],
-    selfcare: [],
-  });
-
-  const handleItemSelect = (item, genreId) => {
-    setSelectedItems((prev) => {
-      const genreItems = prev[genreId];
-      if (genreItems.includes(item)) {
-        return {
-          ...prev,
-          [genreId]: genreItems.filter((i) => i.id !== item.id),
-        };
-      } else {
-        return { ...prev, [genreId]: [...genreItems, item] };
-      }
-    });
-  };
 
   return (
     <div className="p-4 min-h-screen md:p-6 lg:p-8">
@@ -143,19 +124,14 @@ export default function Customize() {
       />
 
       {/* Items Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2 lg:gap-4">
-        {genres
-          .find((g) => g.id === selectedGenre)
-          .items.map((item) => (
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 lg:gap-4">
+        {
+        genres.find(genre => genre.id == selectedGenre)?.items.map((item) => (
             <ItemCard
               key={item.id}
               item={item}
-              isSelected={selectedItems[selectedGenre].some(
-                (i) => i.id === item.id
-              )}
-              isUnlocked={genres.find((g) => g.id === selectedGenre).unlocked}
-              onAddToBox={() => handleItemSelect(item, selectedGenre)}
-              onRemoveFromBox={() => handleItemSelect(item, selectedGenre)}
+              genre = {selectedGenre}
+              isUnlocked={genres.find(genre => genre.id == selectedGenre).unlocked}
             />
           ))}
       </div>

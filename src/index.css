@@ -6,7 +6,7 @@
   padding: 0;
   font-family: "Russo One" sans-serif;
 }
-h1,h2,h3,h4, .nav-items{
+h1,h2,h3, .nav-items{
   font-family: "Sarpanch", sans-serif;
   
 }
@@ -27,7 +27,6 @@ body{
 
 #hero-text{
   font-weight: 800;
-
   font-style: normal;
 }
 ::-webkit-scrollbar{

@@ -6,6 +6,7 @@ import { BrowserRouter, createBrowserRouter, createRoutesFromElements, Route, Ro
 import Home from './pages/Home.jsx'
 import Plans from './pages/Plans.jsx'
 import Customize from './pages/Customize.jsx'
+import { CartContextProvider } from './context/cart.jsx'
 
 function Main() {
 
@@ -18,18 +19,16 @@ function Main() {
           <Route path='customize' element={<Customize />} />
         </Route>
       </>
-    ),{
-      future: {
-          v7_relativeSplatPath: true,
-      }
-    }
+    )
   )
-  return <RouterProvider future={{v7_startTransition : true}} router={router} />
+  return <RouterProvider router={router} />
 }
 
 // Wrap the App component with BrowserRouter
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Main />
+    <CartContextProvider>
+      <Main />
+    </CartContextProvider>
   </StrictMode>,
 )
