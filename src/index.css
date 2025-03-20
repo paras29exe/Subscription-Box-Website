@@ -7,7 +7,8 @@
   font-family: "Russo One" sans-serif;
 }
 h1,h2,h3, .nav-items{
-  font-family: "Sarpanch", sans-serif;
+  font-family: "Sarpanch";
+  font-weight: 200;
   
 }
 body{

@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx'
 import Plans from './pages/Plans.jsx'
 import Customize from './pages/Customize.jsx'
 import { CartContextProvider } from './context/cart.jsx'
+import Orders from './pages/Orders.jsx'
 
 function Main() {
 
@@ -17,6 +18,7 @@ function Main() {
           <Route index element={<Home />} />
           <Route path="plans" element={<Plans />} />
           <Route path='customize' element={<Customize />} />
+          <Route path='orders' element={<Orders />} />
         </Route>
       </>
     )
