@@ -10,7 +10,7 @@ export default function Navbar() {
     { name: "Home", path: "/" },
     { name: "Subscription Plans", path: "/plans" },
     { name: "Customize", path: "/customize" },
-    { name: "How It Works", path: "/how-it-works" },
+    { name: "Orders", path: "/orders" },
     { name: "Account", path: "/account" },
   ];
 
@@ -29,7 +29,7 @@ export default function Navbar() {
               key={path}
               to={path}
               className={({ isActive }) =>
-                `text-gray-400 nav-items transition text-lg font-semibold ${
+                `text-gray-400 nav-items transition font-semibold ${
                   isActive ? "bg-gradient-to-b from-purple-400 to-indigo-600 text-transparent bg-clip-text " : "hover:text-white"
                 }`
               }
