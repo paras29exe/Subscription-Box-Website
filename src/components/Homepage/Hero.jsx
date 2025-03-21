@@ -18,7 +18,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center !bg-transparent "
+      className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center "
 
     >
       <Lottie className="absolute opacity-[75%] dark:brightness-[40%] top-0 left-0 w-full scale-110 h-full z-[-1] " animationData={heroAnimation} />
@@ -29,7 +29,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="text-5xl md:text-8xl font-extrabold text-gray-900 dark:text-white leading-tight "
+        className="text-5xl md:text-9xl !font-[100] font-[Madeleina Sans] text-gray-900 dark:text-white tracking-wider leading-tight "
       >
         <motion.span
           animate={{ textShadow: "0px 0px 12px rgba(99, 102, 241, 0.8)" }}

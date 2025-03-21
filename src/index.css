@@ -1,15 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html{
+  scroll-behavior: smooth;
+}
 *{
   margin: 0;
   padding: 0;
-  font-family: "Russo One" sans-serif;
 }
 h1,h2,h3, .nav-items{
-  font-family: "Sarpanch";
-  font-weight: 200;
-  
+  font-family: Helvetica;
+  font-weight: 200 !important;
 }
 body{
   background-color: rgb(237, 237, 237);

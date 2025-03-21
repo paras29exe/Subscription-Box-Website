@@ -119,10 +119,10 @@ export default function Genres() {
               transition={{ duration: 1.2, delay: 0.15, ease: "easeInOut" }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-bold text-indigo-400 dark:text-indigo-500">
+              <h3 className="text-4xl font-thin text-indigo-400 dark:text-indigo-500">
                 {genre.name}
               </h3>
-              <p className="mt-4 text-gray-900 dark:text-gray-400 text-lg font-semibold">{genre.description}</p>
+              <p className="mt-4 text-gray-900 dark:text-gray-400 text-lg ">{genre.description}</p>
             </motion.div>
           </motion.div>
         ))}
