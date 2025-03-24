@@ -10,7 +10,7 @@ const Genres = lazy(() => import("../components/Homepage/Genre"));
 
 function Home() {
   return (
-    <div className="flex flex-col gap-4 overflow-x-hidden">
+    <div className="flex flex-col gap-4 overflow-x-hidden scroll-smooth">
       <Hero />
 
       {/* Show a fallback while Genres is loading */}

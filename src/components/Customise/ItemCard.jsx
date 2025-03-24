@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useCart } from "../../context/cart";
+import { useCart } from "../../context/cartContext";
 import { useState } from "react";
 
 export default function ItemCard({
@@ -8,11 +8,10 @@ export default function ItemCard({
   genre
 }) {
 
-  const { cart, setCart, addItem, removeItem } = useCart()
+  const { cart, addItem, removeItem } = useCart()
   const [isSelected, setIsSelected] = useState(cart[genre].some(prev => prev.id === item.id))
 
   const handleItemSelect = (item, genre) => {
-
     isSelected ? removeItem(item.id, genre) : addItem(item, genre);
     setIsSelected((prev) => !prev)
   };
@@ -23,7 +22,7 @@ export default function ItemCard({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "tween", duration: 0.1 }}
-      className={`relative bg-gray-100 dark:bg-zinc-900 flex flex-col gap-3 p-2 rounded-xl shadow-md cursor-pointer transition-all
+      className={`relative bg-gray-100 dark:bg-zinc-900 flex flex-col gap-3 p-2 rounded-xl shadow-md transition-all
         ${isSelected ? "ring-2 ring-purple-600" : "hover:shadow-lg"}
         ${!isUnlocked ? "opacity-60 cursor-not-allowed" : ""} 
         ${item.availability == "Out of Stock" && isUnlocked ? "brightness-50" : ""}

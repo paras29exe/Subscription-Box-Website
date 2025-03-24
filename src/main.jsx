@@ -6,7 +6,7 @@ import { BrowserRouter, createBrowserRouter, createRoutesFromElements, Route, Ro
 import Home from './pages/Home.jsx'
 import Plans from './pages/Plans.jsx'
 import Customize from './pages/Customize.jsx'
-import { CartContextProvider } from './context/cart.jsx'
+import { CartContextProvider } from './context/cartContext.jsx'
 import Orders from './pages/Orders.jsx'
 
 function Main() {

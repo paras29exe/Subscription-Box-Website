@@ -29,7 +29,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="text-5xl md:text-9xl !font-[100] font-[Madeleina Sans] text-gray-900 dark:text-white tracking-wider leading-tight "
+        className="text-5xl md:text-9xl !font-[100] font-[Madeleina Sans] text-gray-900 dark:text-white tracking-wide leading-tight "
       >
         <motion.span
           animate={{ textShadow: "0px 0px 12px rgba(99, 102, 241, 0.8)" }}

@@ -1,18 +1,23 @@
 // Orders.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PendingOrders from '../components/Orders/PendingOrders';
 import CompletedOrders from '../components/Orders/CompletedOrders';
 import MyCart from '../components/Orders/MyCart';
 import GenreOrders from '../components/Orders/GenreOrders';
 import Sidebar from '../components/Orders/SideBar';
+import { useCart } from '../context/cartContext';
 
 const Orders = () => {
   const [activeTab, setActiveTab] = useState('My Cart');
   const [activeGenre, setActiveGenre] = useState('Books');
-
+  const {cart} = useCart();
 
   // Genre tabs for the right section
   const genreTabs = ['Books', 'Snack', 'Tech', 'SkinCare'];
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [])
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -22,9 +27,11 @@ const Orders = () => {
       {/* Right Section - Content Area */}
       <div className="w-full md:w-3/4 p-6">
         {/* Show different content based on active tab */}
-        {activeTab === 'My Cart' ? (
-          <MyCart />
-        ) : (
+        {
+        activeTab === 'My Cart'
+         ? ( <MyCart cart={cart}/>)
+          : (
+
           <div>
             <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6 overflow-x-auto">
               {genreTabs.map((genre) => (

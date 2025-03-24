@@ -5,6 +5,8 @@ import { FaCheckCircle } from "react-icons/fa";
 import PricingPlans from "../components/plans/PricingCard";
 import Lottie from "lottie-react";
 import comingSoonAnimation from "../assets/coming-soon.json";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/cartContext";
 
 const genres = [
   {
@@ -78,6 +80,9 @@ export default function SubscriptionPlans() {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [planPrices, setPlanPrices] = useState([]);
   const plansRef = useRef(null);
+  const btnRef = useRef(null)
+  const navigate = useNavigate();
+  const { setActiveGenre } = useCart()
 
   // Function to handle genre selection and scroll to plans
   const handleGenreSelect = (genre) => {
@@ -88,6 +93,13 @@ export default function SubscriptionPlans() {
       plansRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 300); // Delay to ensure state updates first
   };
+
+  const handlePlanSelect = () => {
+    !selectedPlan && setTimeout(() => {
+      btnRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
+  }
+
   useEffect(() => {
     setPlanPrices(genrePrices.find((g) => g.genre === selectedGenre?.toLowerCase())?.prices || []);
 
@@ -101,7 +113,14 @@ export default function SubscriptionPlans() {
       {/* Step 1: Choose Genre */}
       <div className=" mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
         {genres.map((genre, index) => (
-          <GenreCard key={index} plansRef={plansRef} genre={genre} index={index} selectedGenre={selectedGenre} handleGenreSelect={handleGenreSelect} />
+          <GenreCard
+            key={index}
+            plansRef={plansRef}
+            genre={genre}
+            index={index}
+            selectedGenre={selectedGenre}
+            handleGenreSelect={handleGenreSelect}
+          />
         ))}
 
         {/* More to Come Card (Non-Interactive & Different Color) */}
@@ -122,13 +141,25 @@ export default function SubscriptionPlans() {
 
       {/* Step 2: Choose Plan (Only Show After Genre is Selected) */}
       {selectedGenre && (
-        <PricingPlans plans={plans} plansRef={plansRef} planPrices={planPrices} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} />
+        <PricingPlans
+          plans={plans}
+          plansRef={plansRef}
+          planPrices={planPrices}
+          selectedPlan={selectedPlan}
+          setSelectedPlan={setSelectedPlan}
+          handlePlanSelect={handlePlanSelect}
+        />
       )}
 
       {/* Step 3: Checkout Button */}
       {selectedGenre && selectedPlan && (
         <div className="text-center mt-12">
           <motion.button
+            ref={btnRef}
+            onClick={() => {
+              setActiveGenre(selectedGenre)
+              navigate("/orders")
+            }}
             whileHover={{ scale: 1.1 }}
             className="px-8 py-4 bg-indigo-600 text-white font-semibold rounded-full shadow-md hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-all"
           >

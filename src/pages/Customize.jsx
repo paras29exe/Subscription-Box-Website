@@ -1,8 +1,8 @@
 import { useState } from "react";
-import GenreTabs from "../components/BoxesPage/GenreTabs";
-import ItemCard from "../components/BoxesPage/ItemCard";
-import SelectedItemsCount from "../components/BoxesPage/SelectedItemsCount";
-import { useCart } from "../context/cart";
+import GenreTabs from "../components/Customise/GenreTabs";
+import ItemCard from "../components/Customise/ItemCard";
+import SelectedItemsCount from "../components/Customise/SelectedItemsCount";
+import { useCart } from "../context/cartContext";
 
 // Mock data for genres and items
 const genres = [
@@ -79,8 +79,8 @@ const genres = [
       ],
     },
     {
-      id: "selfcare",
-      name: "Self-Care",
+      id: "skincare",
+      name: "Skin-Care",
       unlocked: false,
       subscribed: false,
       items: [
@@ -105,7 +105,7 @@ const genres = [
 ];
 
 export default function Customize() {
-  const [selectedGenre, setSelectedGenre] = useState(genres[0].id);
+  const {activeGenre, setActiveGenre} = useCart()
 
   return (
     <div className="p-4 min-h-screen md:p-6 lg:p-8">
@@ -119,19 +119,19 @@ export default function Customize() {
       {/* Genre Tabs */}
       <GenreTabs
         genres={genres}
-        selectedGenre={selectedGenre}
-        setSelectedGenre={setSelectedGenre}
+        selectedGenre={activeGenre}
+        setSelectedGenre={setActiveGenre}
       />
 
       {/* Items Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 lg:gap-4">
         {
-        genres.find(genre => genre.id == selectedGenre)?.items.map((item) => (
+        genres.find(genre => genre.id == activeGenre)?.items.map((item) => (
             <ItemCard
               key={item.id}
               item={item}
-              genre = {selectedGenre}
-              isUnlocked={genres.find(genre => genre.id == selectedGenre).unlocked}
+              genre = {activeGenre}
+              isUnlocked={genres.find(genre => genre.id == activeGenre).unlocked}
             />
           ))}
       </div>

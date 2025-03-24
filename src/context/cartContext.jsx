@@ -9,8 +9,10 @@ const cartContext = createContext({
         skinCare: [{}],
     },
     total: 0,
-    addItem: (genre, item) => {},
-    removeItem: (genre, itemId) => {},
+    activeGenre: String,
+    setActiveGenre: (genre) => setActiveGenre(genre),
+    addItem: (item, genre) => {},
+    removeItem: (itemId, genre) => {},
     clearCart: () => {},
 })
 
@@ -19,8 +21,10 @@ export const CartContextProvider = ({children}) => {
         books: [],
         snacks: [],
         tech: [],
-        selfcare: [],
+        skincare: [],
       });
+
+      const [activeGenre, setActiveGenre] = useState('books')
 
       const addItem = (item, genre) => {
         setCart((prevCart) => ({...prevCart, [genre]: [...prevCart[genre], item] }));
@@ -35,13 +39,13 @@ export const CartContextProvider = ({children}) => {
             books: [],
             snacks: [],
             tech: [],
-            selfcare: [],
+            skincare: [],
         });
       };
       
     // your cart logic here
     return (
-        <cartContext.Provider value={{ cart, setCart, addItem, removeItem }}>
+        <cartContext.Provider value={{ cart, setCart, addItem, removeItem, activeGenre, setActiveGenre }}>
             {children}
         </cartContext.Provider>
     )

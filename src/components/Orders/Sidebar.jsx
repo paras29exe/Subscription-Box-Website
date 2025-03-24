@@ -14,8 +14,7 @@ const Sidebar = ({activeTab, setActiveTab}) => {
   return (
     <div className="w-full md:w-1/4 bg-white dark:bg-zinc-900 shadow-md rounded-lg p-6 border border-gray-100 dark:border-gray-800">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-        <Package className="mr-2 text-purple-600" />
-        My Orders
+        <Package className="mr-2 text-purple-600" /> My Orders
       </h2>
       
       <div className="space-y-3">

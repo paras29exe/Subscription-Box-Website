@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FaCheckCircle } from "react-icons/fa";
 
-export default function PricingPlans({ plans, plansRef, planPrices, selectedPlan, setSelectedPlan }) {
+export default function PricingPlans({ plans, plansRef, planPrices, selectedPlan, setSelectedPlan, handlePlanSelect }) {
   return (
     <div ref={plansRef} className="mt-16 px-6">
       {/* Section Title */}
@@ -13,7 +13,7 @@ export default function PricingPlans({ plans, plansRef, planPrices, selectedPlan
           <motion.div
             key={index}
             whileHover={{ scale: 1.05, boxShadow: "0px 10px 30px rgba(0,0,0,0.2)" }}
-            onClick={() => setSelectedPlan(plan.name)}
+            onClick={() => { setSelectedPlan(plan.name), handlePlanSelect() }}
             className={`relative p-8 rounded-3xl cursor-pointer transition-all backdrop-blur-lg border border-gray-300 dark:border-gray-700 
               bg-white/60 dark:bg-gray-900/50 hover:shadow-indigo-400/40 dark:hover:shadow-indigo-300/40
               ${selectedPlan === plan.name ? `outline outline-4 ${plan.borderColor}` : ""}`}

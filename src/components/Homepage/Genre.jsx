@@ -57,9 +57,11 @@ const genres = [
     }
   },
 ];
+
 const RotatingModel = ({ path, position, scale }) => {
   const { scene } = useGLTF(path);
   const modelRef = useRef();
+  
   // const [rotationY, setRotationY] = useState(0);
 
   // useEffect(() => {
@@ -76,6 +78,7 @@ const RotatingModel = ({ path, position, scale }) => {
   //   }
   // });
   // console.log("hello")
+
   return <primitive ref={modelRef} object={scene} scale={scale} position={position} />;
 };
 
