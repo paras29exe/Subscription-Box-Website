@@ -50,12 +50,12 @@ const MyCart = ({ }) => {
         <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">My Cart</h2>
 
         {/* Genre tabs */}
-        <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6 overflow-x-auto">
+        <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6 scrollbar-hide overflow-x-auto">
           {genreTabs.map((genre) => (
             <button
               key={genre}
               onClick={() => setActiveGenre(genre.toLowerCase())}
-              className={`py-3 px-6 font-medium text-lg whitespace-nowrap ${activeGenre === genre.toLowerCase()
+              className={`py-3 md:px-6 px-2.5 font-medium text-lg whitespace-nowrap ${activeGenre === genre.toLowerCase()
                 ? 'border-b-2 border-blue-600 text-blue-600 dark:text-blue-400'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                 }`}
@@ -82,8 +82,8 @@ const MyCart = ({ }) => {
                 <div key={box.id} className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-0">
                   <div className="flex flex-wrap md:flex-nowrap">
                     {/* Product image */}
-                    <div className="w-full md:w-24 h-24 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden mb-4 md:mb-0">
-                      <img src={box.image} alt={box.name} className="w-full h-full object-cover" />
+                    <div className="w-full md:w-28 bg-gray-100 dark:bg-gray-700 h-fit rounded-lg overflow-hidden mb-4 md:mb-0">
+                      <img src={box.image} alt={box.name} className="w-full aspect-square object-cover" />
                     </div>
 
                     {/* Product details */}

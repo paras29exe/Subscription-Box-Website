@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-black text-gray-200 shadow-lg sticky top-0 z-50">
-      <div className="w-full lg:w-5/6 mx-auto lg:px-2 px-12 flex justify-between items-center h-16">
+      <div className="w-full lg:w-5/6 mx-auto lg:px-2 px-4 flex justify-between items-center h-16">
         {/* Logo */}
         <NavLink to="/" className=" text-3xl font-bold bg-gradient-to-r from-pink-500 to-indigo-600 text-transparent bg-clip-text">
           GetMeABox

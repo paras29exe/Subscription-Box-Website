@@ -14,12 +14,12 @@ export default function HowItWorks() {
 
   return (
     <section ref={ref} className="py-12 select-none bg-gray-200 dark:bg-gray-900">
-      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-gray-200">How It Works</h2>
-      <div className="mt-8 flex flex-wrap justify-center gap-8">
+      <h2 className="text-3xl md:text-4xl max-lg:px-2 font-bold text-center text-gray-900 dark:text-gray-200">How It Works</h2>
+      <div className="mt-8 flex flex-wrap lg:px-8 px-2 justify-center gap-8">
         {steps.map((step, index) => (
           <motion.div
             key={index}
-            className="flex flex-col items-center bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-xs text-center"
+            className="flex flex-col w-full items-center bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-xs text-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
 

@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <div className="relative w-full h-[92vh] bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center md:p-6 overflow-hidden">
+    <div className="relative w-full h-[92vh] bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center pb-32 md:p-6 overflow-hidden">
       {/* Background Overlay Graphics */}
       <div className="absolute top-0 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-yellow-500 opacity-20 blur-3xl rounded-full" />
       <div className="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500 opacity-20 blur-3xl rounded-full" />
@@ -39,7 +39,7 @@ export default function HeroSection() {
 
           {/* Floating Subscription Box */}
           <motion.img
-            src="/src/assets/images/heroBox.png" // Ensure correct path
+            src="/images/heroBox.png" // Ensure correct path
             alt="Subscription Box"
             className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto drop-shadow-2xl rounded-lg transform transition-transform duration-500 hover:rotate-0 hover:scale-105"
             initial={{ y: 0, rotate: 2 }}

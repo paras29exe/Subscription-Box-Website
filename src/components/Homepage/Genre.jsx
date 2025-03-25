@@ -7,7 +7,7 @@ const genres = [
     name: "📚 Book Lover’s Box",
     description:
       "Immerse yourself in the world of literature with a handpicked selection of bestselling novels, hidden gems, and literary surprises. Perfect for readers who love to escape into new stories!",
-    image: "https://www.freeiconspng.com/thumbs/cartoon-characters-png/cartoon-characters-spongebob-reading-book-png-0.png",
+    image: "/images/books.png",
 
   },
   {
@@ -15,21 +15,21 @@ const genres = [
     description:
       "Experience a delightful mix of sweet, savory, and international snacks! Each box is packed with unique flavors, from gourmet chocolates to exotic chips, making every bite an adventure.",
     image:
-      "/src/assets/images/snacks.png",
+      "/images/snacks.png",
 
   },
   {
     name: "🔌 TechMystery Box",
     description:
       "Stay ahead of the curve with cutting-edge tech! This box delivers innovative gadgets, smart accessories, and the coolest new tech gear to keep you on the front line of innovation.",
-    image: "/src/assets/images/heroBox.png",
+    image: "/images/heroBox.png",
 
   },
   {
     name: "💆‍♀️ Skin Care Box",
     description:
       "Pamper yourself with luxurious skincare essentials! Each box includes high-quality face masks, serums, moisturizers, and beauty must-haves to keep your skin glowing and healthy.",
-    image: "/src/assets/images/skincare.png",
+    image: "/images/skincare.png",
 
   },
 ];
