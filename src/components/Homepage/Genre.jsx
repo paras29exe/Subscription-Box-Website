@@ -37,15 +37,15 @@ const genres = [
 export default function Genres() {
   return (
     <section className="py-16 bg-gray-200 dark:bg-gradient-to-r dark:from-gray-950 dark:via-zinc-900 dark:to-black text-gray-900 dark:text-gray-300 overflow-hidden transition-colors duration-300">
-      <h2 className="text-4xl font-bold text-center mb-12">
+      <h2 className="text-4xl font-bold text-center mb-16">
         What we <span className="text-indigo-400 dark:text-indigo-500">Serve?</span>
       </h2>
-      <div className="w-4/5 mx-auto flex flex-col gap-12 md:gap-4">
+      <div className="w-4/5 mx-auto flex flex-col gap-24 md:gap-4">
 
         {genres.map((genre, index) => (
           <motion.div
             key={index}
-            className={`relative h-[60vh] flex md:gap-20 gap4 flex-col md:flex-row items-center ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            className={`relative flex md:gap-20 gap4 flex-col md:flex-row items-center ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -62,17 +62,17 @@ export default function Genres() {
               className="w-full md:w-1/2"
             >
               <motion.div
-                className="relative rounded-2xl  w-fit h-fit mx-auto overflow-hidden bg-transparent "
+                className="relative flex flex-col items-center justify-center rounded-2xl p-4 md:p-8 w-fit h-fit mx-auto overflow-hidden bg-transparent"
                 initial={{ opacity: 0, x: 100, scale: 0.8 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 1.2, delay: index * 0.15, ease: "easeInOut" }}
                 viewport={{ once: true }}
               >
+                {/* Floating Image */}
                 <motion.img
                   src={genre.image}
                   alt={genre.name}
                   className="w-full z-20 object-contain mix-blend-multiply rounded-2xl transition-all duration-300 hover:scale-110"
-                  // initial={{ y: -40 }}
                   animate={{ y: [-40, 40, -40] }} // Subtle floating effect
                   transition={{
                     duration: 5,
@@ -81,7 +81,9 @@ export default function Genres() {
                     ease: "easeInOut",
                   }}
                 />
+
               </motion.div>
+
             </Tilt>
 
             {/* Genre Text */}
