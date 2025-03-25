@@ -3,7 +3,6 @@ import { Package, Clock, Check, ShoppingCart } from 'lucide-react';
 
 const Sidebar = ({activeTab, setActiveTab}) => {
   
-  
   // Navigation tabs for the left section
   const navigationTabs = [
     { name: 'My Cart', icon: <ShoppingCart className="mr-2" /> },

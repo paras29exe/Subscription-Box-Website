@@ -4,7 +4,7 @@ import PendingOrders from '../components/Orders/PendingOrders';
 import CompletedOrders from '../components/Orders/CompletedOrders';
 import MyCart from '../components/Orders/MyCart';
 import GenreOrders from '../components/Orders/GenreOrders';
-import Sidebar from '../components/Orders/SideBar';
+import Sidebar from '../components/Orders/Sidebar';
 import { useCart } from '../context/cartContext';
 
 const Orders = () => {
