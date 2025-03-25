@@ -13,7 +13,7 @@ export default function HowItWorks() {
   const isInView = useInView(ref, { once: false });
 
   return (
-    <section ref={ref} className="py-12 select-none bg-gray-200 dark:bg-zinc-900">
+    <section ref={ref} className="py-12 select-none bg-gray-200 dark:bg-gray-900">
       <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-gray-200">How It Works</h2>
       <div className="mt-8 flex flex-wrap justify-center gap-8">
         {steps.map((step, index) => (

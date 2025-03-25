@@ -1,74 +1,62 @@
-import { useState, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
-import Confetti from "react-confetti";
-import { useWindowSize } from "react-use";
-import Lottie from "lottie-react";
-import heroAnimation from "../../assets/bg-animation.json";
+import { ArrowRight } from "lucide-react";
 
-export default function Hero() {
-  const { width, height } = useWindowSize();
-
-  // const [showConfetti, setShowConfetti] = useState(true);
-  // const [triggerConfetti, setTriggerConfetti] = useState(false);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setShowConfetti(false), 5000);
-  //   return () => clearTimeout(timer);
-  // }, []);
-
+export default function HeroSection() {
   return (
-    <section
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center "
+    <div className="relative w-full h-screen bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center px-6 overflow-hidden">
+      {/* Background Overlay Graphics */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-500 opacity-20 blur-3xl rounded-full" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 opacity-20 blur-3xl rounded-full" />
 
-    >
-      <Lottie className="absolute opacity-[75%] dark:brightness-[40%] top-0 left-0 w-full scale-110 h-full z-[-1] " animationData={heroAnimation} />
-
-      {/* Animated Huge Text */}
-      <motion.h1
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="text-5xl md:text-9xl !font-[100] font-[Madeleina Sans] text-gray-900 dark:text-white tracking-wide leading-tight "
-      >
-        <motion.span
-          animate={{ textShadow: "0px 0px 12px rgba(99, 102, 241, 0.8)" }}
-          transition={{ repeat: Infinity, repeatType: "mirror", duration: 1 }}
-          className="bg-gradient-to-br from-purple-500 to-indigo-700 text-transparent bg-clip-text"
+      <div className="relative max-w-6xl text-center lg:text-left grid grid-cols-1 lg:grid-cols-2 gap-10 items-center z-10">
+        {/* Left Side Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-6"
         >
-          Your Monthly Box
-          <p
-            animate={{ textShadow: "0px 0px 12px rgba(99, 102, 241, 0.8)" }}
-            transition={{ repeat: Infinity, repeatType: "mirror", duration: 1 }}
-            className="text-indigo-600"
-          >
-            of Surprises
+          <h1 className="text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600">
+            Curated Subscription Boxes <br /> Delivered to Your Doorstep
+          </h1>
+          <p className="text-lg text-gray-300 max-w-lg">
+            Discover hand-picked products tailored to your interests. Subscribe now and enjoy exclusive surprises every month!
           </p>
-        </motion.span>
-      </motion.h1>
+          <button className="mt-6 px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black text-lg font-semibold rounded-lg flex items-center gap-2">
+            Subscribe Now <ArrowRight size={20} />
+          </button>
+        </motion.div>
 
-      {/* Subtitle */}
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 1.5 }}
-        viewport={{ once: true }}
-        className="mt-4 text-lg md:text-2xl text-gray-800 dark:text-gray-300 max-w-2xl"
-      >
-        Get a curated box of unique products delivered to your doorstep every month.
-      </motion.h2>
+        {/* Right Side Floating Box Image */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative flex items-center justify-center"
+        >
+          {/* Background Glow */}
+          <div className="absolute w-64 h-64 bg-yellow-500 opacity-30 blur-3xl rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
-      {/* Animated CTA Button with Confetti on Click */}
-      <motion.button
-        onClick={() => setTriggerConfetti(true)}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.2, duration: 1.5, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="mt-6 px-8 py-3 text-lg font-semibold text-white bg-gradient-to-br from-zinc-600 to-black dark:from-gray-700 dark:to-gray-950 rounded-full shadow-lg hover:bg-indigo-700 dark:hover:bg-indigo-500 transition-all duration-300 z-10"
-      >
-        Subscribe Now
-      </motion.button>
-    </section>
+          {/* Floating Subscription Box */}
+          <motion.img
+            src="/src/assets/images/heroBox.png" // Ensure correct path
+            alt="Subscription Box"
+            className="w-full mx-auto drop-shadow-2xl rounded-lg transform transition-transform duration-500 hover:rotate-0 hover:scale-105"
+            initial={{ y: 0, rotate: 2 }}
+            animate={{ y: [-80, 80, -80] }} // Subtle floating effect
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut",
+            }}
+            whileHover={{ rotateY: 10, rotateX: 10 }} // 3D hover effect
+          />
+        </motion.div>
+
+
+      </div>
+    </div>
   );
 }
