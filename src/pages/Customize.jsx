@@ -124,7 +124,7 @@ export default function Customize() {
       />
 
       {/* Items Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 lg:gap-4">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 lg:gap-4">
         {
         genres.find(genre => genre.id == activeGenre)?.items.map((item) => (
             <ItemCard

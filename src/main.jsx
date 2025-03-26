@@ -8,6 +8,7 @@ import Plans from './pages/Plans.jsx'
 import Customize from './pages/Customize.jsx'
 import { CartContextProvider } from './context/cartContext.jsx'
 import Orders from './pages/Orders.jsx'
+import Account from './pages/Account.jsx'
 
 function Main() {
 
@@ -19,6 +20,7 @@ function Main() {
           <Route path="plans" element={<Plans />} />
           <Route path='customize' element={<Customize />} />
           <Route path='orders' element={<Orders />} />
+          <Route path='account' element={<Account />} />
         </Route>
       </>
     )

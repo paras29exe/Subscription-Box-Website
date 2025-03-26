@@ -41,12 +41,10 @@ const MyCart = ({ }) => {
     }
   ]);
 
-
   const totalPrice = boxes.reduce((sum, box) => sum + box.price , 0);
 
   return (
-    <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-md">
-      <div className="p-6">
+    <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">My Cart</h2>
 
         {/* Genre tabs */}
@@ -55,7 +53,7 @@ const MyCart = ({ }) => {
             <button
               key={genre}
               onClick={() => setActiveGenre(genre.toLowerCase())}
-              className={`py-3 md:px-6 px-2.5 font-medium text-lg whitespace-nowrap ${activeGenre === genre.toLowerCase()
+              className={`py-3 md:px-6 px-3 font-medium text-lg whitespace-nowrap ${activeGenre === genre.toLowerCase()
                 ? 'border-b-2 border-blue-600 text-blue-600 dark:text-blue-400'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                 }`}
@@ -80,28 +78,28 @@ const MyCart = ({ }) => {
 
               {boxes.map((box) => (
                 <div key={box.id} className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-0">
-                  <div className="flex flex-wrap md:flex-nowrap">
+                  <div className="flex gap-x-4 flex-wrap md:flex-nowrap">
                     {/* Product image */}
-                    <div className="w-full md:w-28 bg-gray-100 dark:bg-gray-700 h-fit rounded-lg overflow-hidden mb-4 md:mb-0">
+                    <div className="w-[min(25%,120px)] md:w-15% bg-gray-100 dark:bg-gray-700 h-fit rounded-lg overflow-hidden mb-4 md:mb-0">
                       <img src={box.image} alt={box.name} className="w-full aspect-square object-cover" />
                     </div>
 
                     {/* Product details */}
                     <div className="flex-1 md:ml-4">
-                      <div className="flex justify-between">
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                      <div className="flex items-center gap-x-2 justify-between">
+                        <h3 className=" font-bold text-gray-800 dark:text-white">
                           {box.name}
 
                           {box.isPremium && (
-                            <span className="ml-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
+                            <p className=" bg-yellow-500 font-bold text-white text-xxs px-1.5 py-0.5 text-center rounded-full">
                               PREMIUM
-                            </span>
+                            </p>
                           )}
                         </h3>
-                        <p className="font-semibold text-gray-800 dark:text-white">${(box.price * box.quantity).toFixed(2)}</p>
+                        <p className="font-semibold text-xs text-gray-800 dark:text-white">${(box.price * box.quantity).toFixed(2)}</p>
                       </div>
 
-                      <p className="text-gray-600 dark:text-gray-300 mt-1">{box.description}</p>
+                      <p className="text-gray-600 text-xs dark:text-gray-300 mt-1">{box.description}</p>
 
                       {/* Personalized items for the current genre */}
                       {box.isPersonalized && (
@@ -156,12 +154,12 @@ const MyCart = ({ }) => {
                                     }
                                   </ul>
                                 ) : (
-                                  <p className="text-gray-500 dark:text-gray-400 text-sm">No {activeGenre} items in this box</p>
+                                  <p className="text-gray-500 dark:text-gray-400 text-sm">No {activeGenre} in this box</p>
                                 )}
 
                               {/* add more items navlink element which redirect to /customise page */}
                               <NavLink to="/customize"
-                                className="text-blue-600 flex gap-x-2 mt-4 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm">
+                                className="text-blue-600 text-xs flex items-center gap-x-2 mt-4 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 ">
                                 <Plus className=' w-4' /> Add more items to this box
                               </NavLink>
 
@@ -199,7 +197,7 @@ const MyCart = ({ }) => {
             </div>
           </>
         )}
-      </div>
+      
     </div>
   );
 };

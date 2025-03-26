@@ -15,7 +15,7 @@ export default function HowItWorks() {
   return (
     <section ref={ref} className="py-12 select-none bg-gray-200 dark:bg-gray-900">
       <h2 className="text-3xl md:text-4xl max-lg:px-2 font-bold text-center text-gray-900 dark:text-gray-200">How It Works</h2>
-      <div className="mt-8 flex flex-wrap lg:px-8 px-2 justify-center gap-8">
+      <div className="mt-8 flex flex-wrap lg:px-8 px-2 justify-center gap-4">
         {steps.map((step, index) => (
           <motion.div
             key={index}

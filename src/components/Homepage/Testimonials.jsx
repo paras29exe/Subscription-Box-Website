@@ -13,10 +13,10 @@ export default function Testimonials() {
 
   return (
     <section ref={ref} className="py-10  bg-gray-200 dark:bg-gray-900">
-      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-gray-200">
+      <h2 className="text-3xl md:text-4xl px-4 font-bold text-center text-gray-900 dark:text-gray-200">
         What Our Premium Customers Say
       </h2>
-      <div className="mt-8 w-3/4 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-4">
+      <div className="mt-8 w-full md:w-4/5 md:px-0 px-4 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-4">
         {testimonials.map((testimonial, index) => (
           <motion.div
             key={index}

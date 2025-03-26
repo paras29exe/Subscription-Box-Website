@@ -20,20 +20,20 @@ const Orders = () => {
   }, [])
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex md:gap-3 flex-col md:flex-row min-h-screen">
       {/* Left Section - Navigation Tabs */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Right Section - Content Area */}
-      <div className="w-full md:w-3/4 p-6">
+      <div className="w-full md:w-3/4">
         {/* Show different content based on active tab */}
         {
         activeTab === 'My Cart'
          ? ( <MyCart cart={cart}/>)
           : (
 
-          <div>
-            <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6 overflow-x-auto">
+          <div className='px-3'>
+            <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6 overflow-x-auto scrollbar-hide">
               {genreTabs.map((genre) => (
                 <button
                   key={genre}

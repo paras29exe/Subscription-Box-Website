@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import Tilt from "react-parallax-tilt"
+import Tilt from "react-parallax-tilt";
 
 const genres = [
   {
@@ -8,29 +8,24 @@ const genres = [
     description:
       "Immerse yourself in the world of literature with a handpicked selection of bestselling novels, hidden gems, and literary surprises. Perfect for readers who love to escape into new stories!",
     image: "/images/books.png",
-
   },
   {
     name: "🍿 Snack Attack Box",
     description:
       "Experience a delightful mix of sweet, savory, and international snacks! Each box is packed with unique flavors, from gourmet chocolates to exotic chips, making every bite an adventure.",
-    image:
-      "/images/snacks.png",
-
+    image: "/images/snacks.png",
   },
   {
     name: "🔌 TechMystery Box",
     description:
       "Stay ahead of the curve with cutting-edge tech! This box delivers innovative gadgets, smart accessories, and the coolest new tech gear to keep you on the front line of innovation.",
     image: "/images/heroBox.png",
-
   },
   {
     name: "💆‍♀️ Skin Care Box",
     description:
       "Pamper yourself with luxurious skincare essentials! Each box includes high-quality face masks, serums, moisturizers, and beauty must-haves to keep your skin glowing and healthy.",
     image: "/images/skincare.png",
-
   },
 ];
 
@@ -45,35 +40,33 @@ export default function Genres() {
         {genres.map((genre, index) => (
           <motion.div
             key={index}
-            className={`relative flex md:gap-20 gap4 flex-col md:flex-row items-center ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
+            className={`relative flex md:gap-20 gap-4 flex-col md:flex-row items-center ${
+              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            }`}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: index * 0.15 }}
             viewport={{ once: true }}
           >
-
-            {/* use Png images to look like 3d  */}
             <Tilt
               tiltMaxAngleX={10}
               tiltMaxAngleY={10}
               gyroscope={true}
               perspective={1000}
-              className="w-full md:w-1/2"
+              className="w-full md:w-1/2 flex justify-center"
             >
               <motion.div
-                className="relative flex flex-col items-center justify-center rounded-2xl p-4 md:p-8 w-fit h-fit mx-auto overflow-hidden bg-transparent"
+                className="relative flex flex-col items-center justify-center rounded-2xl p-4 md:p-8 w-3/4 md:w-[90%] aspect-square mx-auto overflow-hidden bg-transparent"
                 initial={{ opacity: 0, x: 100, scale: 0.8 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 1.2, delay: index * 0.15, ease: "easeInOut" }}
                 viewport={{ once: true }}
               >
-                {/* Floating Image */}
                 <motion.img
                   src={genre.image}
                   alt={genre.name}
-                  className="w-full z-20 object-contain mix-blend-multiply rounded-2xl transition-all duration-300 hover:scale-110"
-                  animate={{ y: [-40, 40, -40] }} // Subtle floating effect
+                  className="w-full h-full object-cover mix-blend-multiply rounded-2xl transition-all duration-300 hover:scale-110"
+                  animate={{ y: [-20, 20, -20] }}
                   transition={{
                     duration: 5,
                     repeat: Infinity,
@@ -81,14 +74,11 @@ export default function Genres() {
                     ease: "easeInOut",
                   }}
                 />
-
               </motion.div>
-
             </Tilt>
 
-            {/* Genre Text */}
             <motion.div
-              className="w-full md:w-1/2 text-center md:text-left"
+              className="w-full md:w-1/2 text-center md:text-left px-4"
               initial={{ x: (50 * ((-1) ** index)), opacity: 0, scale: 0.9 }}
               whileInView={{ x: 0, opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.15, ease: "easeInOut" }}
@@ -97,7 +87,7 @@ export default function Genres() {
               <h3 className="text-4xl font-thin text-indigo-400 dark:text-indigo-500">
                 {genre.name}
               </h3>
-              <p className="mt-4 text-gray-900 dark:text-gray-400 text-lg ">{genre.description}</p>
+              <p className="mt-4 text-gray-900 dark:text-gray-400 text-lg">{genre.description}</p>
             </motion.div>
           </motion.div>
         ))}

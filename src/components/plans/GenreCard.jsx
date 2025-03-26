@@ -28,8 +28,8 @@ export default function GenreCard({ genre, index, selectedGenre, handleGenreSele
 
       {/* Text Content */}
       <div className="mt-4 text-center">
-        <h3 className="text-sm sm:text-base md:text-lg xl:text-xl font-bold text-white text-nowrap">{genre.name}</h3>
-        <p className="text-gray-400 mt-1 text-xxs sm:text-xs ">{genre.description}</p>
+        <h3 className="text-base md:text-lg xl:text-xl font-bold text-white">{genre.name}</h3>
+        <p className="text-gray-400 mt-1 text-xs ">{genre.description}</p>
       </div>
 
       {/* Selected Indicator */}
