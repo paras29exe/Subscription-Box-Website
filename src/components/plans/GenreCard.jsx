@@ -11,7 +11,7 @@ export default function GenreCard({ genre, index, selectedGenre, handleGenreSele
       transition={{ type: "tween", duration: 0.1 }} // Fast and snappy transition
       onClick={() => handleGenreSelect(genre.genre)}
       className={`relative p-1.5 sm:p-2.5 rounded-lg shadow-lg cursor-pointer transition-all 
-        border-2 border-transparent bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-lg
+        border-2 border-transparent bg-gradient-to-br from-purple-600 to-pink-500 dark:from-purple-500/20 dark:to-pink-500/20 backdrop-blur-lg
         ${isSelected ? "border-yellow-400 shadow-yellow-400/30" : "hover:shadow-md hover:border-purple-300"}
       `}
     >
@@ -28,8 +28,8 @@ export default function GenreCard({ genre, index, selectedGenre, handleGenreSele
 
       {/* Text Content */}
       <div className="mt-4 text-center">
-        <h3 className="text-base md:text-lg xl:text-xl font-bold text-white">{genre.name}</h3>
-        <p className="text-gray-400 mt-1 text-xs ">{genre.description}</p>
+        <h3 className="text-base md:text-lg xl:text-xl font-[600] text-white">{genre.name}</h3>
+        <p className="text-gray-300 mt-1 text-xs ">{genre.description}</p>
       </div>
 
       {/* Selected Indicator */}

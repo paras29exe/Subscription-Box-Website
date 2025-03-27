@@ -38,7 +38,7 @@ const Orders = () => {
                 <button
                   key={genre}
                   onClick={() => setActiveGenre(genre)}
-                  className={`py-3 px-6 font-medium text-lg whitespace-nowrap ${activeGenre === genre
+                  className={`p-4 font-medium text-lg whitespace-nowrap ${activeGenre === genre
                       ? 'border-b-2 border-blue-600 text-blue-600 dark:text-blue-400'
                       : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                     }`}

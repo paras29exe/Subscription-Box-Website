@@ -7,25 +7,25 @@ const genres = [
     name: "📚 Book Lover’s Box",
     description:
       "Immerse yourself in the world of literature with a handpicked selection of bestselling novels, hidden gems, and literary surprises. Perfect for readers who love to escape into new stories!",
-    image: "/images/books.png",
+    image: "https://res.cloudinary.com/paras-29/image/upload/v1743050244/college%20project/HomePageImages/gund2mstae0oe9fjcyrc.png",
   },
   {
     name: "🍿 Snack Attack Box",
     description:
       "Experience a delightful mix of sweet, savory, and international snacks! Each box is packed with unique flavors, from gourmet chocolates to exotic chips, making every bite an adventure.",
-    image: "/images/snacks.png",
+    image: "https://res.cloudinary.com/paras-29/image/upload/v1743050245/college%20project/HomePageImages/e9fqqmh92oroodockura.png",
   },
   {
-    name: "🔌 TechMystery Box",
+    name: "🔌TechMystery Box",
     description:
       "Stay ahead of the curve with cutting-edge tech! This box delivers innovative gadgets, smart accessories, and the coolest new tech gear to keep you on the front line of innovation.",
-    image: "/images/heroBox.png",
+    image: "https://res.cloudinary.com/paras-29/image/upload/v1743050244/college%20project/HomePageImages/mlw4p4prdbu4drgfi9ag.png",
   },
   {
     name: "💆‍♀️ Skin Care Box",
     description:
       "Pamper yourself with luxurious skincare essentials! Each box includes high-quality face masks, serums, moisturizers, and beauty must-haves to keep your skin glowing and healthy.",
-    image: "/images/skincare.png",
+    image: "https://res.cloudinary.com/paras-29/image/upload/v1743050244/college%20project/HomePageImages/q71gtlvep1rcph37yodt.png",
   },
 ];
 
@@ -84,7 +84,7 @@ export default function Genres() {
               transition={{ duration: 1.2, delay: 0.15, ease: "easeInOut" }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl font-thin text-indigo-400 dark:text-indigo-500">
+              <h3 className="text-4xl font-bold text-indigo-400 dark:text-indigo-500">
                 {genre.name}
               </h3>
               <p className="mt-4 text-gray-900 dark:text-gray-400 text-lg">{genre.description}</p>

@@ -91,7 +91,7 @@ export default function Navbar() {
             <NavLink
               key={path}
               to={path}
-              className="block px-6 py-3 hover:bg-gray-800 transition"
+              className="block px-6 py-3 dark:hover:bg-gray-800 hover:bg-gray-300 transition"
               onClick={() => setIsOpen(false)}
             >
               {name}

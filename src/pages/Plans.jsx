@@ -107,11 +107,11 @@ export default function SubscriptionPlans() {
 
   return (
     <section className="min-h-screen p-4 md:p-6 lg:p-8 transition-all">
-      <h2 className="text-3xl sm:text-5xl font-bold text-center text-indigo-600 dark:text-indigo-400">Choose Your Subscription</h2>
-      <h3 className="text-center text-gray-700 dark:text-gray-300 mt-4">Pick your favorite genre and subscription plan.</h3>
+      <h2 className="text-3xl sm:text-5xl font-bold text-center mb-4 text-indigo-600 dark:text-indigo-400">Choose Your Subscription</h2>
+      <h3 className="text-center text-gray-700 dark:text-gray-300 mb-3">Pick your favorite genre and subscription plan.</h3>
 
       {/* Step 1: Choose Genre */}
-      <div className=" mt-12 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 ">
+      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-4 ">
         {genres.map((genre, index) => (
           <GenreCard
             key={index}

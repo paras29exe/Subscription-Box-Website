@@ -108,14 +108,11 @@ export default function Customize() {
   const {activeGenre, setActiveGenre} = useCart()
 
   return (
-    <div className="p-4 min-h-screen md:p-6 lg:p-8">
-      <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 text-indigo-600 dark:text-indigo-400">
+    <div className=" min-h-screen">
+      <h1 className="text-3xl md:text-5xl font-bold text-center my-4 text-indigo-600 dark:text-indigo-400">
         Customize Your Box
       </h1>
-
-      {/* Selected Items Count by Genre */}
-      {/* <SelectedItemsCount genres={genres} selectedItems={selectedItems} /> */}
-
+      
       {/* Genre Tabs */}
       <GenreTabs
         genres={genres}
@@ -124,7 +121,7 @@ export default function Customize() {
       />
 
       {/* Items Grid */}
-      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 lg:gap-4">
+      <div className="p-4 md:p-6 lg:p-8 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 lg:gap-4">
         {
         genres.find(genre => genre.id == activeGenre)?.items.map((item) => (
             <ItemCard

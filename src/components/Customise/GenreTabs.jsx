@@ -1,6 +1,6 @@
 export default function GenreTabs({ genres, selectedGenre, setSelectedGenre }) {
     return (
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 lg:gap-4 mb-8 rounded-md sticky top-16 !z-20 pb-4 pt-2 bg-gradient-to-b from-black/80 via-black/50 to-transparent">
+      <div className="grid grid-cols-2 px-4 sm:grid-cols-4 gap-2 lg:gap-4 mb-4 sticky top-16 !z-20 pb-4 pt-4 bg-gradient-to-b from-transparent via-gray-600/60 dark:via-black/70 to-transparent">
         {genres.map((genre) => (
           <button
             key={genre.id}

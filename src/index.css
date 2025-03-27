@@ -10,10 +10,9 @@ html{
 }
 h1,h2,h3, .nav-items{
   font-family: Helvetica;
-  font-weight: 200 !important;
 }
 body{
-  background-color: rgb(237, 237, 237);
+  background-color: rgb(231, 231, 231);
 }
 @media (prefers-color-scheme: dark) {
   body {
