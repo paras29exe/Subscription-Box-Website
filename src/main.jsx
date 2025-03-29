@@ -9,6 +9,9 @@ import Customize from './pages/Customize.jsx'
 import { CartContextProvider } from './context/cartContext.jsx'
 import Orders from './pages/Orders.jsx'
 import Account from './pages/Account.jsx'
+import Login from './pages/Login.jsx'
+import SignUp from './pages/Signup.jsx'
+import AuthLayout from './components/auth/AuthLayout.jsx'
 
 function Main() {
 
@@ -17,10 +20,15 @@ function Main() {
       <>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path="signup/:step" element={<SignUp />} />
+            <Route path="login" element={<Login />} />
+          </Route>
           <Route path="plans" element={<Plans />} />
           <Route path='customize' element={<Customize />} />
           <Route path='orders' element={<Orders />} />
           <Route path='account' element={<Account />} />
+
         </Route>
       </>
     )

@@ -108,7 +108,7 @@ export default function Customize() {
   const {activeGenre, setActiveGenre} = useCart()
 
   return (
-    <div className=" min-h-screen">
+    <div className="">
       <h1 className="text-3xl md:text-5xl font-bold text-center my-4 text-indigo-600 dark:text-indigo-400">
         Customize Your Box
       </h1>

@@ -12,7 +12,7 @@ export default function Testimonials() {
   const ref = useRef(null);
 
   return (
-    <section ref={ref} className="py-10  bg-gray-200 dark:bg-gray-900">
+    <section ref={ref} className="py-10  bg-gray-200 dark:bg-zinc-900">
       <h2 className="text-3xl md:text-4xl px-4 font-bold text-center text-gray-900 dark:text-gray-200">
         What Our Premium Customers Say
       </h2>
@@ -25,7 +25,7 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0}}
             whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             // animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: index * 0.15 , duration: 0.6 }}
+            transition={{ delay: index * 0.10 , duration: 0.4 }}
             viewport={{ once: true }}
           >
             <div className="flex justify-center mx-auto overflow-hidden bg-slate-200 w-16 rounded-full aspect-square">

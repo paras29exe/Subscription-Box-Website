@@ -1,6 +1,6 @@
 export default function Account() {
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen  dark:text-white text-center">
+    <div className="h-[90vh] flex flex-col items-center justify-center dark:text-white text-center">
       <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Coming Soon 🚀</h1>
       <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
         We're building something amazing for you!

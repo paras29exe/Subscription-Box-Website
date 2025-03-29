@@ -20,7 +20,7 @@ const Orders = () => {
   }, [])
 
   return (
-    <div className="flex md:gap-3 flex-col md:flex-row min-h-screen">
+    <div className="flex md:gap-3 flex-col md:flex-row ">
       {/* Left Section - Navigation Tabs */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 

@@ -106,7 +106,7 @@ export default function SubscriptionPlans() {
   }, [selectedGenre]);
 
   return (
-    <section className="min-h-screen p-4 md:p-6 lg:p-8 transition-all">
+    <section className=" p-4 md:p-6 lg:p-8 transition-all">
       <h2 className="text-3xl sm:text-5xl font-bold text-center mb-4 text-indigo-600 dark:text-indigo-400">Choose Your Subscription</h2>
       <h3 className="text-center text-gray-700 dark:text-gray-300 mb-3">Pick your favorite genre and subscription plan.</h3>
 

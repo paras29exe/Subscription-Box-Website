@@ -19,6 +19,10 @@ body{
     background: linear-gradient(to bottom, rgb(7, 7, 7), black);
     color: white;
   }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Black */
+    cursor: pointer;
+  }
 }
 
 .canvas-container>div>canvas{
@@ -37,3 +41,4 @@ body{
 ::-webkit-scrollbar-thumb{
   background: linear-gradient(#a92ba0, #4e0b6f);
 }
+

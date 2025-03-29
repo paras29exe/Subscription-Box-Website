@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <div className="relative w-full h-[92vh] bg-gradient-to-br dark:from-gray-900 dark:to-black from-gray-500 to-white dark:text-white text-black flex items-center justify-center pb-32 md2:p-6 overflow-hidden">
+    <div className="relative w-full min-h-[92vh] bg-gradient-to-br dark:from-gray-900 dark:to-black from-gray-500 to-white dark:text-white text-black flex items-center justify-center pb-32 md2:p-6 overflow-x-hidden">
       {/* Background Overlay Graphics */}
       <div className="absolute top-0 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-yellow-500 opacity-20 blur-3xl rounded-full" />
       <div className="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500 opacity-20 blur-3xl rounded-full" />
