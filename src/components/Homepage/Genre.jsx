@@ -45,7 +45,7 @@ export default function Genres() {
             }`}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.15 }}
+            transition={{ duration: 0.5, delay: index * 0.15 }}
             viewport={{ once: true }}
           >
             <Tilt
@@ -59,7 +59,7 @@ export default function Genres() {
                 className="relative flex flex-col items-center justify-center rounded-2xl p-4 md:p-8 w-3/4 md:w-[90%] aspect-square mx-auto overflow-hidden bg-transparent"
                 initial={{ opacity: 0.6, x: (50 * ((-1) ** (index+1))), scale: 0.8 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.75, delay: index * 0.1, ease: "easeInOut" }}
+                transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
                 viewport={{ once: true }}
               >
                 <motion.img
@@ -81,13 +81,13 @@ export default function Genres() {
               className="w-full md:w-1/2 text-center md:text-left px-4"
               initial={{ x: (50 * ((-1) ** index)), opacity: 0.6, scale: 0.9 }}
               whileInView={{ x: 0, opacity: 1, scale: 1 }}
-              transition={{ duration: 0.75, delay: index * 0.1, ease: "easeInOut" }}
+              transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
               viewport={{ once: true }}
             >
-              <h3 className="text-4xl font-bold text-indigo-400 dark:text-indigo-500">
+              <h3 className="lg:text-5xl text-3xl font-bold text-indigo-400 dark:text-indigo-500">
                 {genre.name}
               </h3>
-              <p className="mt-4 text-gray-900 dark:text-gray-400 text-lg">{genre.description}</p>
+              <p className="mt-4 text-gray-900 dark:text-gray-500 text-lg lg:text-xl">{genre.description}</p>
             </motion.div>
           </motion.div>
         ))}

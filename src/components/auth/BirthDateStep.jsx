@@ -1,15 +1,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import AuthLayout from './AuthLayout';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import { requestOtp } from '../../store/asyncThunk/otp.thunk';
 
 const BirthDateStep = ({ userInfo, onNext, onBack }) => {
   const { register, handleSubmit, formState: { errors } } = useForm({
-    defaultValues: { birthDate: userInfo.birthDate }
+    defaultValues: { dob: userInfo.dob }
   });
+  const dispatch = useDispatch()
 
-  const onSubmit = (data) => {
-    onNext(data);
+  const onSubmit = async (data) => {
+    onNext(data)
   };
 
   return (
@@ -21,18 +23,18 @@ const BirthDateStep = ({ userInfo, onNext, onBack }) => {
         <div>
           <input
             type="date"
-            {...register('birthDate', {
+            {...register('dob', {
               required: 'Birth date is required',
               validate: (value) => {
-                const birthDate = new Date(value);
-                const age = new Date().getFullYear() - birthDate.getFullYear();
+                const dob = new Date(value);
+                const age = new Date().getFullYear() - dob.getFullYear();
                 return age >= 13 || 'You must be at least 13 years old';
               }
             })}
             className="w-full p-3 pr-5 outline outline-1 bg-transparent text-black dark:text-white 
              rounded-lg focus:outline-none focus:ring-1 focus:ring-yellow-500"
           />
-          {errors.birthDate && <p className="text-red-500 text-sm mt-1">{errors.birthDate.message}</p>}
+          {errors.dob && <p className="text-red-500 text-sm mt-1">{errors.dob.message}</p>}
         </div>
         <div className="flex space-x-4">
           <button

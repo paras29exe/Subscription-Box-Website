@@ -1,21 +1,47 @@
-export default function Account() {
-  return (
-    <div className="h-[90vh] flex flex-col items-center justify-center dark:text-white text-center">
-      <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Coming Soon 🚀</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
-        We're building something amazing for you!
-      </p>
-      <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 italic">
-        👨‍💻 Paras (the developer) is working hard on this section.
-      </p>
+import { useState } from 'react';
+import ProfileTab from '../components/account/ProfileTab';
+import ShippingAddressesTab from '../components/account/ShippingAddressesTab';
+import ActiveSubscriptionsTab from '../components/account/ActiveSubscriptionsTab';
+import PaymentHistoryTab from '../components/account/PaymentHistoryTab';
+import AccountSidebar from '../components/account/AccountSidebar';
 
-      {/* Back to Home Button */}
-      <a
-        href="/"
-        className="mt-6 px-4 py-2 bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-500 rounded-lg text-white transition-colors"
-      >
-        Back to Home
-      </a>
+const Account = () => {
+  const [activeTab, setActiveTab] = useState('profile');
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'profile':
+        return <ProfileTab />;
+      case 'shipping':
+        return <ShippingAddressesTab />;
+      case 'subscriptions':
+        return <ActiveSubscriptionsTab />;
+      case 'payments':
+        return <PaymentHistoryTab />;
+      default:
+        return <ProfileTab />;
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center   bg-opacity-90 dark:bg-opacity-80 backdrop-blur-md">
+      <div className="container max-lg:max-w-none p-6">
+        <h1 className="text-3xl font-bold text-pink-500 md:text-left text-center dark:text-pink-400 mb-4 md:mb-8">My Account</h1>
+        
+        <div className="flex flex-col md:flex-row md:gap-2 md2:gap-6 gap-4">
+          {/* Sidebar */}
+          <div className="w-full md:w-1/4">
+            <AccountSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+          </div>
+          
+          {/* Main Content */}
+          <div className="w-full md:w-3/4 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-white/20 dark:border-gray-700">
+            {renderTabContent()}
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default Account;

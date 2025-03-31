@@ -12,26 +12,21 @@ const AuthLayout = () => {
             {/* Left side - Branding/Image */}
             <div className="lg:w-1/2 relative hidden lg:flex flex-col gap-y-16 items-center justify-center p-4 borderr">
 
-                {/* <div className="relative text-center">
-                    <h1 className="text-5xl font-extrabold mb-2 drop-shadow-lg bg-gradient-to-br from-blue-600 to-gray-300 text-transparent bg-clip-text">GetMeABox</h1>
-                    <p className="text-xl text-gray-700 dark:text-gray-400 ">Discover Curated Surprises Every Month</p>
-                </div> */}
                 <Lottie
                     animationData={authAnimation}
                     className='w-full '
                 />
             </div>
 
-{/* visible only on phone */}
+            {/* visible only on phone */}
             <Lottie
-                    animationData={authAnimation}
-                    className='w-screen hidden max-md2:inline-block absolute top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 z-[-1] '
-                />
-
+                animationData={authAnimation}
+                className='w-screen hidden max-lg:inline-block absolute top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 z-[-1] '
+            />
 
             {/* Right side - Authentication Form */}
-            <div className="w-full max-md2:flex-grow lg:w-1/2 flex justify-center items-center max-md2:bg-black/75 max-md2:backdrop-blur-[3px] ">
-                <div className='w-full p-4 lg:p-0 sm:w-3/5 flex flex-col gap-y-20'>
+            <div className="w-full flex-grow lg:flex-grow-0 lg:w-1/2 flex justify-center items-center max-lg:bg-black/75 max-lg:backdrop-blur-[3px] ">
+                <div className='w-full p-4  md:w-3/4 xl:w-3/5 lg:p-0 flex flex-col gap-y-20'>
                     <div className='mt-4 text-center sm:text-left text-nowrap'>
                         {pathname.includes("signup")
                             ? <div>

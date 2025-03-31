@@ -44,7 +44,7 @@ const MyCart = ({ }) => {
   const totalPrice = boxes.reduce((sum, box) => sum + box.price , 0);
 
   return (
-    <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-md p-6">
+    <div className=" rounded-lg border border-gray-100/30 shadow-md p-6">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">My Cart</h2>
 
         {/* Genre tabs */}

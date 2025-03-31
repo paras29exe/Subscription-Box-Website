@@ -79,6 +79,7 @@ export default function SubscriptionPlans() {
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [planPrices, setPlanPrices] = useState([]);
+  
   const plansRef = useRef(null);
   const btnRef = useRef(null)
   const navigate = useNavigate();

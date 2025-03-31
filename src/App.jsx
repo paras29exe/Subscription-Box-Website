@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import './App.css'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 function App() {
+  
 
   return (
     <>
