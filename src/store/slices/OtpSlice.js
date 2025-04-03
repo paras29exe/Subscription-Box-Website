@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { requestOtp, verifyOtp } from "../asyncThunk/otp.thunk";
+import { requestOtp, verifyOtp } from "../asyncThunk/otpThunk";
 
 const otpSlice = createSlice({
     name: "otp",

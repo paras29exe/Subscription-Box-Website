@@ -9,6 +9,7 @@ const NameStep = ({ userInfo, onNext, onBack }) => {
 
   const onSubmit = async (data) => {
     try {
+      data.name = data.firstName + ' ' + data.lastName;
       onNext(data);
     } catch (error) {
       console.error("Update Name Error:", error);

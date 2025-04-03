@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Eye, EyeOff } from 'lucide-react'; // Eye icons for show/hide toggle
 import Button from './Button';
+import { useSelector } from 'react-redux';
 
 const PasswordStep = ({ userInfo, onSubmit }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors }, setError } = useForm({
     defaultValues: { password: userInfo?.password, confirmPassword: userInfo?.confirmPassword }
   });
+  const { loading } = useSelector(state => state.auth)
+  const { verified } = useSelector(state => state.otp)
 
   const [showPassword, setShowPassword] = useState(false);
   const [passwordMatchError, setPasswordMatchError] = useState("");
@@ -18,10 +21,14 @@ const PasswordStep = ({ userInfo, onSubmit }) => {
   const passwordSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       setPasswordMatchError("Passwords do not match!");
-      return;
+      return null;
     }
     setPasswordMatchError("");
-    onSubmit(data);
+    
+    if(!verified){
+      setError("password", "Your otp verification has failed!");
+    }
+    onSubmit({...userInfo, ...data});
   };
 
   return (
@@ -46,7 +53,7 @@ const PasswordStep = ({ userInfo, onSubmit }) => {
                 hasNumber: value => /[0-9]/.test(value) || 'Must include a number'
               }
             })}
-            className="w-full p-3 bg-transparent outline outline-1 text-black dark:text-white 
+            className="w-full p-3 bg-transparent outline outline-2 dark:outline-1 text-black dark:text-white 
                          rounded-lg focus:outline-none focus:ring-1 focus:ring-yellow-500"
           />
           <button type="button" onClick={togglePasswordVisibility} 
@@ -63,13 +70,14 @@ const PasswordStep = ({ userInfo, onSubmit }) => {
             {...register('confirmPassword', {
               required: 'Please confirm your password',
             })}
-            className="w-full p-3 bg-transparent outline outline-1 text-black dark:text-white 
+            className="w-full p-3 bg-transparent outline outline-2 dark:outline-1 text-black dark:text-white 
                          rounded-lg focus:outline-none focus:ring-1 focus:ring-yellow-500"
           />
           {errors.confirmPassword && <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>}
         </div>
         {passwordMatchError && <p className="text-red-500 text-sm">{passwordMatchError}</p>}
-        <Button text="Create Account" />
+
+        <Button text="Create Account" loading={loading} />
       </form>
     </div>
   );

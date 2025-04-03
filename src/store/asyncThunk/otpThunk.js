@@ -8,8 +8,7 @@ export const requestOtp = createAsyncThunk(
             const response = await axiosInstance.post("/otp/request", { email });
             return response.data;
         } catch (error) {
-            console.error(error.response.data);
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(error.message);
         }
     });
 
@@ -23,4 +22,6 @@ export const verifyOtp = createAsyncThunk(
         } catch (error) {
             return rejectWithValue(error.response.data);
         }
-    });
+    }
+);
+

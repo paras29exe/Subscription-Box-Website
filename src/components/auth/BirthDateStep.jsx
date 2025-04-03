@@ -2,13 +2,12 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Button from './Button';
 import { useDispatch } from 'react-redux';
-import { requestOtp } from '../../store/asyncThunk/otp.thunk';
+import { requestOtp } from '../../store/asyncThunk/otpThunk';
 
 const BirthDateStep = ({ userInfo, onNext, onBack }) => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: { dob: userInfo.dob }
   });
-  const dispatch = useDispatch()
 
   const onSubmit = async (data) => {
     onNext(data)
@@ -31,7 +30,7 @@ const BirthDateStep = ({ userInfo, onNext, onBack }) => {
                 return age >= 13 || 'You must be at least 13 years old';
               }
             })}
-            className="w-full p-3 pr-5 outline outline-1 bg-transparent text-black dark:text-white 
+            className="w-full p-3 pr-5 outline outline-2 dark:outline-1 bg-transparent text-black dark:text-white 
              rounded-lg focus:outline-none focus:ring-1 focus:ring-yellow-500"
           />
           {errors.dob && <p className="text-red-500 text-sm mt-1">{errors.dob.message}</p>}

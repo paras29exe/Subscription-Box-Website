@@ -44,7 +44,7 @@ const MyCart = ({ }) => {
   const totalPrice = boxes.reduce((sum, box) => sum + box.price , 0);
 
   return (
-    <div className=" rounded-lg border border-gray-100/30 shadow-md p-6">
+    <div className=" rounded-lg border border-gray-600 shadow-md p-6">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">My Cart</h2>
 
         {/* Genre tabs */}
@@ -119,7 +119,7 @@ const MyCart = ({ }) => {
 
                           {expandedItem && ( */
 
-                            <div className="mt-2 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                            <div className="mt-2 p-3 bg-white dark:bg-gray-800 rounded-lg">
 
                               {
                                 cart[activeGenre] && cart[activeGenre].length > 0 ? (

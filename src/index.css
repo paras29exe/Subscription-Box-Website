@@ -12,7 +12,7 @@ h1,h2,h3, .nav-items{
   font-family: Helvetica;
 }
 body{
-  background-color: rgb(231, 231, 231);
+  background-color: rgb(237, 237, 237);
 }
 @media (prefers-color-scheme: dark) {
   body {
@@ -42,3 +42,8 @@ body{
   background: linear-gradient(#a92ba0, #4e0b6f);
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

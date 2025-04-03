@@ -1,17 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, LoaderCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { autoLogin } from "../store/asyncThunk/authThunk.js";
+import { requestOtp } from "../store/asyncThunk/otpThunk.js";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
   const menuRef = useRef(null);
   const navigate = useNavigate();
-  const location = useLocation();
-  const pathname = location.pathname;
+  const { pathname } = useLocation();
+
+  const dispatch = useDispatch();
 
   // Example authentication state (replace this with actual authentication logic)
-  const isAuthenticated = false; // Update dynamically based on login status
+  const { userData, loading, initialLogin } = useSelector(state => state.auth); // Update dynamically based on login status
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -46,13 +51,13 @@ export default function Navbar() {
     { name: "Orders", path: "/orders" },
   ];
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     navigate("/auth/login");
   };
 
   return (
     <nav className="bg-black text-gray-200 shadow-lg !sticky top-0 z-50">
-      <div className="w-full md2:w-5/6 mx-auto md2:px-0 px-6 flex justify-between items-center h-16">
+      <div className="w-full md2:w-5/6 mx-auto md2:px-0 px-6 flex justify-between items-center p-2.5">
         {/* Logo */}
         <NavLink
           to="/"
@@ -79,40 +84,45 @@ export default function Navbar() {
           ))}
 
           {/* Show profile icon if authenticated, else show Login button */}
-          {isAuthenticated ? (
-            <NavLink to="/account" className="ml-4 text-gray-300 hover:text-white">
-              <User size={24} />
+          {userData ? (
+            <NavLink to="/account" className=" text-gray-300 bg-gray-700 rounded-full w-10 overflow-hidden aspect-square hover:text-white">
+              <img src={userData?.prefs?.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${userData.name}&backgroundType=gradientLinear`} alt="Profile pic" className="w-full" />
+
             </NavLink>
           ) : (
             <button
               onClick={handleLogin}
-              className="ml-4 bg-yellow-500 text-black px-3 py-1.5 rounded-lg hover:bg-yellow-600 transition duration-300 font-bold"
+              disabled={loading || initialLogin}
+              className=" bg-yellow-500 text-black px-3 py-1.5 rounded-lg hover:bg-yellow-600 transition duration-300 font-bold"
             >
-              Login
+              {(loading || initialLogin) ? <LoaderCircle className="animate-spin" size={24} /> : "Login"}
             </button>
           )}
         </div>
 
         {/* Mobile Menu */}
-        <div className="flex items-center md:hidden">
-          {!isAuthenticated && (
+        <div className="flex items-center gap-x-4 md:hidden">
+
+          {userData ? (
+            <NavLink to="/account" className=" text-gray-300 bg-gray-700 w-10 overflow-hidden aspect-square rounded-full  hover:text-white">
+              <img src={userData?.prefs?.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${userData.name}&backgroundType=gradientLinear`} alt="Profile pic" className="w-full" />
+            </NavLink>
+          ) : (
             <button
               onClick={handleLogin}
-              className="mr-4 bg-yellow-500 text-black px-3 py-1.5 rounded-lg text-sm hover:bg-yellow-600 transition duration-300"
+              disabled={loading || initialLogin}
+              className=" bg-yellow-500 text-black px-3 py-1.5 rounded-lg text-sm hover:bg-yellow-600 transition duration-300"
             >
-              Login
-            </button>
-          )}
+              {(loading || initialLogin) ? <LoaderCircle className="animate-spin" size={24} /> : "Login"}
 
-          {isAuthenticated && (
-            <NavLink to="/account" className="mr-4 text-gray-300 hover:text-white">
-              <User size={24} />
-            </NavLink>
-          )}
+            </button>
+          )
+          }
 
           <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300">
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
+
         </div>
       </div>
 

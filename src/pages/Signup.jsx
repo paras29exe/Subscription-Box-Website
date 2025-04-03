@@ -5,16 +5,18 @@ import NameStep from "../components/auth/NameStep";
 import BirthDateStep from "../components/auth/BirthDateStep";
 import OtpStep from "../components/auth/OtpStep";
 import PasswordStep from "../components/auth/PasswordStep";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../store/asyncThunk/authThunk";
 
 const steps = ["email", "name", "dob", "otp-verification", "password"]; // Define step order
 
 const SignUp = () => {
-  const navigate = useNavigate();
   const { step } = useParams();
   const [userInfo, setUserInfo] = useState({});
   const dispatch = useDispatch()
+  const navigate = useNavigate();
+
+  const { userData } = useSelector(state => state.auth)
 
   useEffect(() => {
     if (!steps.includes(step)) {
@@ -39,16 +41,19 @@ const SignUp = () => {
   };
 
   const handleFinalSubmit = async (data) => {
-    setUserInfo((prev) => ({ ...prev, ...data }));
+    // to ensure state get updated properly
 
     try {
-      console.log("hello world")
-      await dispatch(signupUser(userInfo));
-      // navigate("/")
+      await dispatch(signupUser(data)).unwrap();
+      navigate("/")
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   };
+
+  useEffect(() => {
+    if (userData) navigate("/")
+  }, [])
 
   const renderStep = () => {
     switch (step) {

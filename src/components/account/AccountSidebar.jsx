@@ -1,9 +1,16 @@
-import { useState } from "react";
-import { LogOut, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Loader, LoaderCircle, LogOut, Menu, X } from "lucide-react";
 import { account } from "../../appwriteAuth/appwrite.config";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../store/asyncThunk/authThunk";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 const AccountSidebar = ({ activeTab, setActiveTab }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch()
+    const { userData, loading } = useSelector((state) => state.auth);
+    const navigate = useNavigate()
 
     const tabs = [
         { id: "profile", label: "Profile" },
@@ -13,8 +20,14 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
     ];
 
     const handleLogout = async () => {
-        await account.deleteSessions();
+        try {
+            await dispatch(logoutUser()).unwrap()
+            navigate("/")
+        } catch (error) {
+            console.error("Logout Error: ", error)
+        }
     };
+
 
     return (
         <>
@@ -39,10 +52,17 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
                 <div className="border-t border-white/10 pt-1">
                     <button
                         onClick={handleLogout}
+                        disabled={loading}
                         className="flex items-center w-full text-left px-4 py-3 text-red-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
                     >
-                        <LogOut className="mr-2 h-5 w-5" />
-                        Logout
+                        {loading ?
+                            <LoaderCircle className="animate-spin mx-auto" size={24} />
+                            :
+                            <>
+                                <LogOut className="mr-2 h-5 w-5" />
+                                Logout
+                            </>
+                        }
                     </button>
                 </div>
             </div>
@@ -60,10 +80,17 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
                 <div className="">
                     <button
                         onClick={handleLogout}
+                        disabled={loading}
                         className="flex items-center w-full text-left px-4 py-3 text-red-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
                     >
-                        <LogOut className="mr-2 h-5 w-5" />
-                        Logout
+                        {loading ?
+                            <LoaderCircle className="animate-spin mx-auto" size={24} />
+                            :
+                            <>
+                                <LogOut className="mr-2 h-5 w-5" />
+                                Logout
+                            </>
+                        }
                     </button>
                 </div>
             </div>

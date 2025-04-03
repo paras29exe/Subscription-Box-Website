@@ -3,9 +3,8 @@ import Lottie from 'lottie-react';
 import authAnimation from "../../assets/Auth-animation.json"
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
-const AuthLayout = () => {
-    const location = useLocation();
-    const pathname = location.pathname;
+const AuthLayout = ({children}) => {
+    const {pathname} = useLocation();
 
     return (
         <div className="flex flex-grow overflow-x-hidden flex-col lg:flex-row">
@@ -31,7 +30,7 @@ const AuthLayout = () => {
                         {pathname.includes("signup")
                             ? <div>
                                 <h1 className='text-4xl sm:text-5xl font-semibold bg-gradient-to-br from-blue-600 to-gray-300 text-transparent bg-clip-text'>Get Started</h1>
-                                <p className='dark:text-gray-400 sm:text-base text-sm text-gray-600'>Welcome to GetMeAbox - Lets Create your Account.</p>
+                                <p className='dark:text-gray-400 sm:text-base text-sm text-gray-800'>Welcome to GetMeAbox - Lets Create your Account.</p>
                                 {/* <NavLink 
                                 to={"/login"}
                                 className="text-sm block text-right text-blue-600 hover:text-blue-700 dark:text-blue-400"
@@ -39,7 +38,7 @@ const AuthLayout = () => {
                             </div>
                             : <>
                                 <h1 className='text-4xl sm:text-5xl font-semibold bg-gradient-to-br from-blue-600 to-gray-300 text-transparent bg-clip-text'>Welcome Back!</h1>
-                                <p className='dark:text-gray-400 text-gray-600'>Get back to your Account.</p>
+                                <p className='dark:text-gray-400 text-gray-800'>Get back to your Account.</p>
                             </>
                         }
                     </div>

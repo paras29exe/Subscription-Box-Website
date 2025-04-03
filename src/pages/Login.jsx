@@ -1,39 +1,35 @@
 // src/components/auth/Login.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import AuthLayout from '../components/auth/AuthLayout';
 import Button from '../components/auth/Button';
-import { account } from '../appwriteAuth/appwrite.config.js';
-import Cookies from 'js-cookie';
+import { useDispatch, useSelector } from 'react-redux';
+import { autoLogin, loginUser } from '../store/asyncThunk/authThunk.js';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, setError } = useForm();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const onSubmit = async ({ email, password }) => {
+  const { loading, userData } = useSelector(state => state.auth)
+
+  const onSubmit = async (data) => {
+
     try {
-      // Step 1: Login User
-      const session = await account.createEmailPasswordSession(email, password);
-      console.log("User Logged In:", session);
-
-      // Step 2: Generate JWT
-      const jwtResponse = await account.createJWT();
-      console.log("JWT Token:", jwtResponse.jwt);
-
-      // Step 3: Store JWT in Cookies
-      Cookies.set('accessToken', jwtResponse.jwt, {
-        expires: 7, // Expires in 7 days
-        secure: true, // Ensures it is sent over HTTPS
-        sameSite: 'Strict', // Prevents CSRF attacks
-      });
-
-      console.log("JWT stored in cookies");
+      await dispatch(loginUser(data)).unwrap()
+      navigate("/", {replace : true})
     } catch (error) {
-      console.error("Login Error:", error);
+      setError("password", {type: "manual" , message: error.message})
     }
   };
 
+  useEffect(() => {
+    if(userData) navigate("/")
+  },[])
+  
   return (
     <div className="w-full">
 
@@ -49,7 +45,7 @@ const Login = () => {
                 message: "Entered value does not match email format"
               }
             })}
-            className="w-full p-3 bg-transparent outline outline-1 text-black dark:text-white 
+            className="w-full p-3 bg-transparent outline outline-2 dark:outline-1 text-black dark:text-white 
                          rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
           {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
@@ -66,7 +62,7 @@ const Login = () => {
                 message: 'Password must be at least 8 characters'
               }
             })}
-            className="w-full p-3 bg-transparent outline outline-1 text-black dark:text-white 
+            className="w-full p-3 bg-transparent outline outline-2 dark:outline-1 text-black dark:text-white 
                          rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
           <button
@@ -77,22 +73,22 @@ const Login = () => {
           >
             {showPassword ? "Hide" : "Show"}
           </button>
-          {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
         </div>
+          {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
 
         <div className="flex justify-between items-center">
           <Link
             to="/forgot-password"
-            className="text-indigo-600 dark:text-indigo-400 hover:underline"
+            className="text-blue-800 dark:text-indigo-400 hover:underline"
           >
             Forgot Password?
           </Link>
         </div>
 
-        <Button text={"Login"} />
+        <Button text={"Login"} loading={loading} />
 
         <div className="text-center mt-4">
-          <p className="dark:text-gray-300 text-gray-600">
+          <p className="dark:text-gray-300 text-gray-900">
             Don't have an account? {' '}
             <Link
               to="/auth/signup/email"
@@ -108,26 +104,26 @@ const Login = () => {
       <div className="mt-6">
         <div className="flex items-center justify-center space-x-4">
           <hr className="w-1/4 border-gray-300 dark:border-gray-700" />
-          <span className="text-gray-500 dark:text-gray-400">Or continue with</span>
+          <span className="text-gray-900 dark:text-gray-400">Or continue with</span>
           <hr className="w-1/4 border-gray-300 dark:border-gray-700" />
         </div>
 
         <div className="grid grid-cols-3 gap-4 mt-4">
           <button
             className="bg-transparent outline outline-1 p-3 rounded-lg flex items-center justify-center 
-                         hover:bg-black hover: text-white dark:hover:bg-white dark:hover:text-black transition"
+                         hover:bg-black hover:text-white text-black dark:text-white dark:hover:bg-white dark:hover:text-black transition"
           >
             Google
           </button>
           <button
             className="bg-transparent outline outline-1 p-3 rounded-lg flex items-center justify-center 
-                         hover:bg-black hover: text-white dark:hover:bg-white dark:hover:text-black transition"
+                         hover:bg-black hover:text-white text-black dark:text-white dark:hover:bg-white dark:hover:text-black transition"
           >
             Facebook
           </button>
           <button
             className="bg-transparent outline outline-1 p-3 rounded-lg flex items-center justify-center 
-                         hover:bg-black hover: text-white dark:hover:bg-white dark:hover:text-black transition"
+                         hover:bg-black hover:text-white text-black dark:text-white dark:hover:bg-white dark:hover:text-black transition"
           >
             Apple
           </button>

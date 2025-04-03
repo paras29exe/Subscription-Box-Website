@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { requestOtp, verifyOtp } from "../../store/asyncThunk/otp.thunk";
-import { resetOtpState } from "../../store/slices/OtpSlice";
+import { requestOtp, verifyOtp } from "../../store/asyncThunk/otpThunk";
 import Button from "./Button";
 
 const OtpStep = ({ userInfo, onNext, onBack }) => {
   const dispatch = useDispatch();
-  const { otpSent, verified, verifing, sendingOtp, error } = useSelector((state) => state.otp);
-  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: { otp: "" } });
+  const { otpSent, verifing, sendingOtp } = useSelector((state) => state.otp);
+  const { register, handleSubmit, formState: { errors }, setError, clearErrors } = useForm({ defaultValues: { otp: "" } });
 
   const [resendCooldown, setResendCooldown] = useState(30);
+  const [backendError, setBackendError] = useState(null);
 
-  // Send OTP when component mounts
   useEffect(() => {
-    if (!otpSent) {
-      dispatch(requestOtp(userInfo.email)); // Send OTP on first load
-      setSendingOtp(false)
+      dispatch(requestOtp(userInfo.email));
       startCooldown();
-    }
   }, []);
 
-  // Start cooldown for resend
   const startCooldown = () => {
     setResendCooldown(30);
     const interval = setInterval(() => {
@@ -35,55 +30,46 @@ const OtpStep = ({ userInfo, onNext, onBack }) => {
     }, 1000);
   };
 
-  // Resend OTP function
   const handleResendOTP = () => {
     if (resendCooldown === 0) {
-      console.log("hello")
-      setSendingOtp(true)
       dispatch(requestOtp(userInfo.email));
-      setSendingOtp(false);
       startCooldown();
     }
   };
 
-  // Submit handler
   const onSubmit = async (data) => {
+    clearErrors("otp"); // Clear form validation errors
+    setBackendError(null); // Reset backend error
+
     const res = await dispatch(verifyOtp({ email: userInfo.email, otp: data.otp }));
-    if (res.payload.status === 200) {
+
+    if (res.payload?.status === 200) {
       onNext(userInfo);
-      // dispatch(resetOtpState()); 
     } else {
-      console.error("OTP verification failed:", res.error);
+      setBackendError("Invalid OTP. Please try again.");
+      setError("otp", { type: "manual", message: "Invalid OTP" });
     }
   };
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl font-bold mb-6 text-center dark:text-white text-black">
-        Verify Your Email
-      </h2>
-      <p className="text-center dark:text-gray-300 text-gray-600">
-        A verification code has been sent to {userInfo.email}.
-      </p>
+      <h2 className="text-3xl font-bold mb-6 text-center dark:text-white text-black">Verify Your Email</h2>
+      <p className="text-center dark:text-gray-300 text-gray-600">A verification code has been sent to {userInfo.email}</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
         <div>
           <input
-            type="text"
+            type="number"
             placeholder="Enter 6-digit OTP"
             {...register("otp", {
-              required: "OTP is required",
-              pattern: {
-                value: /^\d{6}$/,
-                message: "OTP must be 6 digits"
-              }
+              required: backendError ? false : "OTP is required",
+              pattern: backendError ? false : { value: /^\d{6}$/, message: "OTP must be 6 digits" },
             })}
-            className="w-full p-3 bg-transparent outline-1 outline text-black dark:text-white 
-                       rounded-lg focus:outline-none focus:ring-1 focus:ring-yellow-500"
+            className="w-full p-3 bg-transparent outline-2 dark:outline-1 outline text-black dark:text-white 
+             rounded-lg focus:outline-none focus:ring-1 focus:ring-yellow-500"
           />
         </div>
-
-        {error && <p className="text-red-500 text-sm ">{error.message}</p>}
+        {backendError ? <p className="text-red-500 text-sm">{backendError}</p> : errors.otp && <p className="text-red-500 text-sm">{errors.otp.message}</p>}
 
         <Button text={verifing ? "Verifying..." : sendingOtp ? "Sending OTP..." : "Verify OTP"} disabled={verifing} />
 
@@ -102,9 +88,7 @@ const OtpStep = ({ userInfo, onNext, onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="w-full bg-gray-300 dark:bg-gray-800 text-black dark:text-white 
-                     py-3 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-700 
-                     transition duration-300 mt-4"
+          className="w-full bg-gray-300 dark:bg-gray-800 text-black dark:text-white py-3 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-700 transition duration-300 mt-4"
         >
           Back
         </button>
