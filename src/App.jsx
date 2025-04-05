@@ -9,40 +9,36 @@ import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
   const dispatch = useDispatch()
-  const {initialLogin} = useSelector(state => state.auth)
-  const [loading, setLoading] = useState(false)
+  const [initialLoading, setInitialLoading] = useState(true)
 
   // auto login user from cookies on first load of website
   useEffect(() => {
     async function autoLoginUser() {
-      setLoading(true)
       try {
         await dispatch(autoLogin()).unwrap();
       } catch (error) {
-      } finally {
-        setTimeout(() => {
-          setLoading(false)
-        }, 400);
-       }
+      }finally{
+        setInitialLoading(false)
+      }
     }
     autoLoginUser()
   }, [])
 
-  // if(loading) return <LoadingScreen initialLogin={initialLogin} />;
+  if(initialLoading) return <LoadingScreen />;
 
   return (
     <>
       <ToastContainer
         position="top-center"
         className="top-16"
-        autoClose={4000}
+        autoClose={3500}
         hideProgressBar={false}
         newestOnTop={true}
-        closeOnClick
+        closeOnClick={true}
         rtl={false}
-        // pauseOnFocusLoss
+        pauseOnFocusLoss={false}
         draggable
-        // pauseOnHover
+        pauseOnHover={false}
         // theme="light"
       />
       <div className='flex flex-col min-h-screen'>

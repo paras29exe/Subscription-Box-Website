@@ -31,65 +31,60 @@ const genres = [
 
 export default function Genres() {
   return (
-    <section className="py-16 bg-gray-200 dark:bg-gradient-to-r dark:from-gray-950 dark:via-zinc-900 dark:to-black text-gray-900 dark:text-gray-300 overflow-x-hidden transition-colors duration-300">
+    <section className="py-16 bg-gray-200 dark:bg-gradient-to-r dark:from-gray-950 dark:via-zinc-900 dark:to-black text-gray-900 dark:text-gray-300 transition-colors duration-300">
       <h2 className="text-4xl font-bold text-center mb-16">
         What we <span className="text-indigo-400 dark:text-indigo-500">Serve?</span>
       </h2>
-      <div className="w-4/5 mx-auto flex flex-col gap-y-24 md2:gap-y-4">
 
+      <div className="w-4/5 mx-auto flex flex-col gap-y-24 md2:gap-y-4">
         {genres.map((genre, index) => (
-          <motion.div
+          <div
             key={index}
-            className={`relative flex md2:gap-20 gap-4 flex-col md:flex-row items-center ${
-              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-            }`}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.15 }}
-            viewport={{ once: true }}
+            className={`relative flex md2:gap-20 gap-4 flex-col md:flex-row items-center ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse" }`}
           >
-            <Tilt
-              tiltMaxAngleX={10}
-              tiltMaxAngleY={10}
-              gyroscope={true}
-              perspective={1000}
-              className="w-full md:w-1/2 flex justify-center"
+            <motion.div
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              viewport={{ once: true }}
+              className='w-full md:w-1/2'
             >
-              <motion.div
-                className="relative flex flex-col items-center justify-center rounded-2xl p-4 md:p-8 w-3/4 md:w-[90%] aspect-square mx-auto overflow-hidden bg-transparent"
-                initial={{ opacity: 0.6, x: (50 * ((-1) ** (index+1))), scale: 0.8 }}
-                whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
-                viewport={{ once: true }}
+              <Tilt
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                gyroscope={true}
+                perspective={1000}
+                className="w-full  flex justify-center"
               >
-                <motion.img
-                  src={genre.image}
-                  alt={genre.name}
-                  className="w-full h-full object-cover mix-blend-multiply rounded-2xl transition-all duration-300 hover:scale-110"
-                  animate={{ y: [-20, 20, -20] }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    repeatType: "mirror",
-                    ease: "easeInOut",
-                  }}
-                />
-              </motion.div>
-            </Tilt>
+                <motion.div
+                  className="relative flex flex-col items-center justify-center rounded-2xl p-4 md:p-8 w-3/4 md:w-[85%] aspect-square mx-auto overflow-hidden bg-transparent"
+                  animate={{ y: [15, -15, 15] }}
+                  transition={{ duration: 5, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" }}
+                  viewport={{ once: true }}
+                >
+                  <img
+                    src={genre.image}
+                    alt={genre.name}
+                    className="w-full h-full object-cover mix-blend-multiply rounded-2xl transition-all duration-300 hover:scale-105"
+                  />
+                </motion.div>
+              </Tilt>
+            </motion.div>
 
             <motion.div
-              className="w-full md:w-1/2 text-center md:text-left px-4"
-              initial={{ x: (50 * ((-1) ** index)), opacity: 0.6, scale: 0.9 }}
-              whileInView={{ x: 0, opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
-              viewport={{ once: true }}
-            >
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="w-full md:w-1/2 text-center md:text-left px-4">
               <h3 className="lg:text-5xl text-3xl font-bold text-indigo-400 dark:text-indigo-500">
                 {genre.name}
               </h3>
-              <p className="mt-4 text-gray-900 dark:text-gray-500 text-lg lg:text-xl">{genre.description}</p>
+              <p className="mt-4 text-gray-900 dark:text-gray-500 text-lg lg:text-xl">
+                {genre.description}
+              </p>
             </motion.div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

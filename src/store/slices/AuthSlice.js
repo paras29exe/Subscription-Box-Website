@@ -6,7 +6,7 @@ const initialState = {
     role: 'user', // Default role
     error: null,
     loading: false,
-    initialLogin: false,
+    autoLogin: false,
 };
 
 const authSlice = createSlice({
@@ -31,17 +31,17 @@ const authSlice = createSlice({
             })
             // autoLogin case
             .addCase(autoLogin.pending, (state) => {
-                state.initialLogin = true;
+                state.autoLogin = true;
                 state.error = null;
             })
             .addCase(autoLogin.fulfilled, (state, action) => {
-                state.initialLogin = false;
+                state.autoLogin = false;
                 state.userData = action.payload;
                 state.error = null;
                 state.role = action.payload.user?.role || 'user'; // Assign role if available
             })
             .addCase(autoLogin.rejected, (state, action) => {
-                state.initialLogin = false;
+                state.autoLogin = false;
                 state.userData = null;
                 state.error = action.payload;
             })

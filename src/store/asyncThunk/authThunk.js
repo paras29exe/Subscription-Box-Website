@@ -79,7 +79,7 @@ export const autoLogin = createAsyncThunk(
             const user = await account.get();
             return user;
         } catch (error) {
-            return rejectWithValue(rejected({message : error} || "Auto Login Failed"));
+            return rejectWithValue(rejected(error || "Auto Login Failed"));
         }
     }
 );

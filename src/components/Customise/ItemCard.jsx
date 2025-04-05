@@ -1,17 +1,25 @@
 import { motion } from "framer-motion";
 import { useCart } from "../../context/cartContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ItemCard({
   item,
   isUnlocked,
-  genre
+  genre,
+  userData,
 }) {
 
-  const { cart, addItem, removeItem } = useCart()
+  const { cart, addItem, removeItem, showPopup } = useCart()
+  const navigate = useNavigate()
   const [isSelected, setIsSelected] = useState(cart[genre].some(prev => prev.id === item.id))
 
   const handleItemSelect = (item, genre) => {
+    if(!userData) {
+      navigate("/auth/login")
+      showPopup();
+      return;
+    }
     isSelected ? removeItem(item.id, genre) : addItem(item, genre);
     setIsSelected((prev) => !prev)
   };

@@ -13,10 +13,8 @@ export default function LoadingScreen() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
+    <div className="flex flex-col items-center justify-center h-screen w-screen text-center bg-white text-gray-900 dark:bg-black dark:text-white">
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
         transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
         className="flex flex-col items-center space-y-4"
       >

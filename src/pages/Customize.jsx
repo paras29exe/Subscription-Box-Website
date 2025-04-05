@@ -3,6 +3,7 @@ import GenreTabs from "../components/Customise/GenreTabs";
 import ItemCard from "../components/Customise/ItemCard";
 import SelectedItemsCount from "../components/Customise/SelectedItemsCount";
 import { useCart } from "../context/cartContext";
+import { useSelector } from "react-redux";
 
 // Mock data for genres and items
 const genres = [
@@ -106,6 +107,7 @@ const genres = [
 
 export default function Customize() {
   const {activeGenre, setActiveGenre} = useCart()
+  const { userData  } = useSelector(state => state.auth)
 
   return (
     <div className="">
@@ -126,6 +128,7 @@ export default function Customize() {
         genres.find(genre => genre.id == activeGenre)?.items.map((item) => (
             <ItemCard
               key={item.id}
+              userData={userData}
               item={item}
               genre = {activeGenre}
               isUnlocked={genres.find(genre => genre.id == activeGenre).unlocked}

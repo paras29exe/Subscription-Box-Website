@@ -14,7 +14,7 @@ const ProfileTab = () => {
     const profileData = {
         name: userData?.name,
         email: userData?.email,
-        dob: userData?.prefs.dob,
+        dob: userData?.prefs?.dob,
     };
 
     const { register, handleSubmit, formState: { errors }, reset, setError: setFormError } = useForm({
@@ -77,7 +77,7 @@ const ProfileTab = () => {
         </div>
     );
 
-    return (
+    if(userData) return (
         <div className="backdrop-blur-md rounded-2xl shadow-lg p-6">
             <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Profile Information</h2>
 

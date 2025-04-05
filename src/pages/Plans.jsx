@@ -159,7 +159,7 @@ export default function SubscriptionPlans() {
             ref={btnRef}
             onClick={() => {
               setActiveGenre(selectedGenre)
-              navigate("/orders")
+              navigate("/cart")
             }}
             whileHover={{ scale: 1.1 }}
             className="px-8 py-4 bg-indigo-600 text-white font-semibold rounded-full shadow-md hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-all"

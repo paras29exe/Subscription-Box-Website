@@ -49,16 +49,18 @@ const MyCart = ({ }) => {
 
         {/* Genre tabs */}
         <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6 scrollbar-hide overflow-x-auto">
-          {genreTabs.map((genre) => (
+          {genreTabs.map((genre, index) => (
             <button
               key={genre}
+              disabled={index > 0}
               onClick={() => setActiveGenre(genre.toLowerCase())}
-              className={`py-3 md:px-6 px-3 font-medium text-lg whitespace-nowrap ${activeGenre === genre.toLowerCase()
+              className={`py-3 md:px-6 px-3 font-medium text-lg disabled:cursor-not-allowed whitespace-nowrap ${activeGenre === genre.toLowerCase()
                 ? 'border-b-2 border-blue-600 text-blue-600 dark:text-blue-400'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                 }`}
             >
               {genre}
+              {(index > 0) && <span className="ml-2 text-sm">🔒</span>}
             </button>
           ))}
         </div>

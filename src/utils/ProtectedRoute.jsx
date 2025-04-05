@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
     useEffect(() => {
         if (!userData) {
-            toast.warn("You need to be logged in to access this page!", { toastId: "auth-warning", className: "bg-red-600 text-white" });
+            toast.warn("You need to be logged in to access this page!", { toastId: "auth-warning" });
         }
     }, []);
 
