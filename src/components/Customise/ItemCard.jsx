@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useCart } from "../../context/cartContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function ItemCard({
   item,
@@ -15,8 +16,9 @@ export default function ItemCard({
   const [isSelected, setIsSelected] = useState(cart[genre].some(prev => prev.id === item.id))
 
   const handleItemSelect = (item, genre) => {
-    if(!userData) {
+    if (!userData) {
       navigate("/auth/login")
+      toast.warn("Login to add items to cart!" , {className: "bg-red-500 text-white"});
       showPopup();
       return;
     }
@@ -76,7 +78,7 @@ export default function ItemCard({
             className={`w-full px-4 py-1 lg:py-1.5 rounded-md text-xs lg:text-sm font-bold disabled:cursor-not-allowed
                ${isSelected
                 ? "bg-red-500 text-white hover:bg-red-600"
-                : "dark:bg-white dark:text-black bg-black text-white hover:bg-gray-300"
+                : "dark:bg-white dark:text-black bg-black text-white hover:bg-zinc-800 dark:hover:bg-gray-300"
               }
               ${item.availability == "Out of Stock" ? "!bg-gray-700 !text-white" : ""}
 

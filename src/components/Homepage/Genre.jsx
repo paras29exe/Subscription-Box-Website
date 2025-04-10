@@ -31,7 +31,7 @@ const genres = [
 
 export default function Genres() {
   return (
-    <section className="py-16 bg-gray-200 dark:bg-gradient-to-r dark:from-gray-950 dark:via-zinc-900 dark:to-black text-gray-900 dark:text-gray-300 transition-colors duration-300">
+    <section className="py-16  dark:bg-gradient-to-r dark:from-gray-950 dark:via-zinc-900 dark:to-black text-gray-900 dark:text-gray-300 transition-colors duration-300">
       <h2 className="text-4xl font-bold text-center mb-16">
         What we <span className="text-indigo-400 dark:text-indigo-500">Serve?</span>
       </h2>

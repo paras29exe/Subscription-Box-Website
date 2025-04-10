@@ -62,7 +62,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-black text-gray-200 shadow-lg !sticky top-0 z-50">
+    <nav className="bg-white dark:bg-black dark:text-gray-200 text-gray-900 shadow-sm !sticky top-0 z-50">
       <div className="w-full md2:w-5/6 mx-auto md2:px-0 px-6 flex justify-between items-center p-2.5">
         {/* Logo */}
         <NavLink
@@ -80,9 +80,9 @@ export default function Navbar() {
               key={path}
               to={path}
               className={({ isActive }) =>
-                `text-gray-400 transition font-semibold ${isActive
+                `transition font-semibold ${isActive
                   ? "bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text"
-                  : "hover:text-white"}`
+                  : "text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white"}`
               }
             >
               {name}
@@ -92,23 +92,25 @@ export default function Navbar() {
           {/* Cart with indicator for desktop */}
           <NavLink
             to="/cart"
-            className="text-gray-400 transition font-semibold relative hover:text-white"
-          >
-            <div className="flex items-center gap-1">
+            className={({ isActive }) =>
+              ` transition font-semibold relative ${isActive
+                ? "bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text"
+                : "text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white"}`
+            }
+            >
               {/* <ShoppingCart size={22} /> */}
-              <span>MyCart</span>
+              MyCart
               {totalItems > 0 && (
-                <span className="absolute -top-3 -right-3 bg-pink-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -right-3 -top-3 bg-pink-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   {totalItems}
                 </span>
               )}
-            </div>
           </NavLink>
 
           {/* Show profile icon if authenticated, else show Login button */}
           {userData ? (
             <NavLink to="/account" className="text-gray-300 bg-gray-700 rounded-full w-10 overflow-hidden aspect-square hover:text-white">
-              <img src={userData?.prefs?.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${userData.name}&backgroundType=gradientLinear`} alt="Profile pic" className="w-full" />
+              <img src={userData?.avatar } alt="Profile pic" className="w-full" />
             </NavLink>
           ) : (
             <button
@@ -124,7 +126,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         <div className="flex items-center gap-x-4 md:hidden">
           {/* Cart icon for mobile */}
-          <NavLink to="/cart" className="relative text-gray-300 hover:text-white">
+          <NavLink to="/cart" className="relative dark:text-gray-300 text-gray-900 hover:text-white">
             <ShoppingCart size={24} className={`${pathname == "/cart" && "text-blue-700"}`}/>
             {totalItems > 0 && (
               <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
@@ -134,8 +136,8 @@ export default function Navbar() {
           </NavLink>
 
           {userData ? (
-            <NavLink to="/account" className="text-gray-300 bg-gray-700 w-10 overflow-hidden aspect-square rounded-full hover:text-white">
-              <img src={userData?.prefs?.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${userData.name}&backgroundType=gradientLinear`} alt="Profile pic" className="w-full" />
+            <NavLink to="/account" className="dark:text-gray-300 text-gray-900 bg-red-300 dark:bg-gray-700 w-10 overflow-hidden aspect-square rounded-full hover:text-white">
+              <img src={userData?.avatar} alt="Profile pic" className="w-full" />
             </NavLink>
           ) : (
             <button
@@ -147,7 +149,7 @@ export default function Navbar() {
             </button>
           )}
 
-          <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300">
+          <button onClick={() => setIsOpen(!isOpen)} className="dark:text-gray-300 text-gray-900">
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
@@ -168,7 +170,7 @@ export default function Navbar() {
               <NavLink
                 key={path}
                 to={path}
-                className="block px-6 py-3 dark:hover:bg-gray-800 hover:bg-gray-300 transition"
+                className="block px-6 py-3 text-black dark:hover:bg-gray-800 hover:bg-gray-300 dark:text-gray-300  dark:hover:text-white transition"
                 onClick={() => setIsOpen(false)}
               >
                 {name}

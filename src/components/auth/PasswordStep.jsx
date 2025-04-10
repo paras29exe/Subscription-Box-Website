@@ -40,6 +40,7 @@ const PasswordStep = ({ userInfo, onSubmit }) => {
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
+            autoFocus
             placeholder="Password"
             {...register('password', {
               required: 'Password is required',

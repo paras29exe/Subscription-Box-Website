@@ -24,10 +24,8 @@ const Account = () => {
   };
 
   return (
-    <div className="flex items-center justify-center   bg-opacity-90 dark:bg-opacity-80 backdrop-blur-md">
-      <div className="container max-lg:max-w-none p-6">
-        <h1 className="text-3xl font-bold text-pink-500 md:text-left text-center dark:text-pink-400 mb-4 md:mb-8">My Account</h1>
-        
+    <div className="flex items-center justify-center  bg-opacity-90 dark:bg-opacity-80 backdrop-blur-md">
+      <div className="container max-lg:max-w-none p-6">        
         <div className="flex flex-col md:flex-row md:gap-2 md2:gap-6 gap-4">
           {/* Sidebar */}
           <div className="w-full md:w-1/4">
@@ -35,7 +33,7 @@ const Account = () => {
           </div>
           
           {/* Main Content */}
-          <div className="w-full md:w-3/4 backdrop-blur-lg rounded-xl p-6 shadow-lg border border-white/20 dark:border-gray-700">
+          <div className="w-full md:w-3/4 md:backdrop-blur-lg rounded-xl md:p-6 md:shadow-lg md:border md:border-white/20 md:dark:border-gray-700">
             {renderTabContent()}
           </div>
         </div>

@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { User, Mail, Calendar, Lock, Eye, EyeOff } from 'lucide-react';
-import { account } from '../../appwriteAuth/appwrite.config';
-import { useSelector } from 'react-redux';
+import { User, Mail, Calendar, Lock, Eye, EyeOff, CheckCircle } from 'lucide-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { changePassword } from '../../store/asyncThunk/authThunk';
+import { toast } from 'react-toastify';
 
 const ProfileTab = () => {
     const [isChangingPassword, setIsChangingPassword] = useState(false);
     const [showPassword, setShowPassword] = useState({});
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const { userData } = useSelector(state => state.auth)
+    const { userData, loading } = useSelector(state => state.auth)
+    const dispatch = useDispatch()
 
     const profileData = {
         name: userData?.name,
         email: userData?.email,
-        dob: userData?.prefs?.dob,
+        dob: userData?.dob,
     };
 
     const { register, handleSubmit, formState: { errors }, reset, setError: setFormError } = useForm({
@@ -31,17 +32,11 @@ const ProfileTab = () => {
             return;
         }
 
-        setLoading(true);
-        setError('');
-
         try {
-            await account.updatePassword(data.newPassword, data.currentPassword);
-            setIsChangingPassword(false);
-            reset();
-        } catch (err) {
-            setError(err.message || 'Failed to update password');
-        } finally {
-            setLoading(false);
+            await dispatch(changePassword({currentPassword: data.currentPassword, newPassword: data.newPassword})).unwrap();
+            toast.success('Password updated successfully', { className: 'bg-green-600 text-white font-semibold', icon: <CheckCircle size={24} color='white' />});
+        } catch (error) {
+            toast.error(error.message || 'Failed to update password');
         }
     };
 
@@ -77,8 +72,8 @@ const ProfileTab = () => {
         </div>
     );
 
-    if(userData) return (
-        <div className="backdrop-blur-md rounded-2xl shadow-lg p-6">
+    return (
+        <div className="backdrop-blur-md rounded-2xl shadow-lg md:p-6">
             <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Profile Information</h2>
 
             <div className="space-y-4 mb-8">
@@ -115,7 +110,12 @@ const ProfileTab = () => {
                             {...register("newPassword",
                                 {
                                     required: "New password is required",
-                                    minLength: { value: 8, message: "Password must be at least 8 characters" }
+                                    minLength: { value: 8, message: "Password must be at least 8 characters" },
+                                    validate: {
+                                        hasUpperCase: value => /[A-Z]/.test(value) || 'Must include an uppercase letter',
+                                        hasLowerCase: value => /[a-z]/.test(value) || 'Must include a lowercase letter',
+                                        hasNumber: value => /[0-9]/.test(value) || 'Must include a number'
+                                    }
                                 })
                             }
                         />

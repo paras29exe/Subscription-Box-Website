@@ -79,7 +79,7 @@ const Login = () => {
         <div className="flex justify-between items-center">
           <Link
             to="/forgot-password"
-            className="text-blue-800 dark:text-indigo-400 hover:underline"
+            className="text-blue-900 dark:text-indigo-400 hover:underline"
           >
             Forgot Password?
           </Link>
@@ -92,9 +92,9 @@ const Login = () => {
             Don't have an account? {' '}
             <Link
               to="/auth/signup/email"
-              className="text-yellow-600 dark:text-yellow-400 hover:underline"
+              className="text-orange-700 dark:text-yellow-400 hover:underline"
             >
-              Signup
+              Signup here
             </Link>
           </p>
         </div>

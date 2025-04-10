@@ -1,7 +1,8 @@
 import { StrictMode } from 'react'
-import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import './index.css'
 import { CartContextProvider } from './context/cartContext.jsx'
+import { DisplayContextProvider } from './context/displayContext.jsx'
 import { Provider } from 'react-redux'
 import store from './store/store.js'
 import Routing from './Routing.jsx'
@@ -12,12 +13,14 @@ function Main() {
 }
 
 // Wrap the App component with BrowserRouter
-ReactDOM.createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <CartContextProvider>
+      <DisplayContextProvider>
+        <CartContextProvider>
           <Main />
-      </CartContextProvider>
+        </CartContextProvider>
+      </DisplayContextProvider>
     </Provider>
   </StrictMode>
 )

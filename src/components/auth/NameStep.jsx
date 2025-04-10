@@ -25,6 +25,7 @@ const NameStep = ({ userInfo, onNext, onBack }) => {
         <div>
           <input
             type="text"
+            autoFocus
             placeholder="First Name"
             {...register('firstName', {
               required: 'First name is required',
@@ -37,7 +38,7 @@ const NameStep = ({ userInfo, onNext, onBack }) => {
 
           <input
             type="text"
-            placeholder="Last Name"
+            placeholder="Last Name (Optional)"
             {...register('lastName')}
             className="w-full p-3 outline outline-1 bg-transparent text-black dark:text-white rounded-lg 
                          focus:outline-none focus:ring-1 focus:ring-yellow-500"

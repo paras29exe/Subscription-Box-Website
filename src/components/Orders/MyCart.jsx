@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useCart } from '../../context/cartContext';
 import { NavLink } from 'react-router-dom';
 import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const MyCart = ({ }) => {
   const [expandedItem, setExpandedItem] = useState(false);
@@ -43,6 +44,34 @@ const MyCart = ({ }) => {
 
   const totalPrice = boxes.reduce((sum, box) => sum + box.price , 0);
 
+  const handleRazorpayPayment = () => {
+    const options = {
+      key: "rzp_test_E7Vb1pOzmgqoWo", // Replace with your Razorpay Key ID
+      amount: 19497, // Amount in paise = ₹500
+      currency: "INR",
+      name: "GetMeABox",
+      description: "Test Transaction",
+      image: "/favico.png", // Optional: your site logo
+      handler: function (response) {
+        toast.success(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+      },
+      prefill: {
+        name: "Test User",
+        email: "testuser@example.com",
+        contact: "9999999999",
+      },
+      notes: {
+        subscription_type: "monthly",
+      },
+      theme: {
+        color: "#0f172a", // Tailwind dark slate
+      },
+    };
+  
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+  
   return (
     <div className=" rounded-lg border border-gray-600 shadow-md p-6">
         <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">My Cart</h2>
@@ -193,7 +222,7 @@ const MyCart = ({ }) => {
                 <span className="text-gray-800 dark:text-white">${totalPrice.toFixed(2)}</span>
               </div>
 
-              <button className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+              <button onClick={handleRazorpayPayment} className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                 Proceed to Checkout
               </button>
             </div>

@@ -3,10 +3,10 @@ import { ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <div className="relative w-full min-h-[92vh] overflow-hidden bg-gradient-to-br dark:from-gray-900 dark:to-black from-gray-500 to-white dark:text-white text-black flex items-center justify-center pb-32 lg:pb-0 overflow-x-hidden">
+    <div className="relative w-full min-h-[92vh] overflow-hidden bg-gradient-to-br dark:from-gray-900 dark:to-black from-gray-300 to-white dark:text-white text-black flex items-center justify-center pb-32 lg:pb-0 overflow-x-hidden">
       {/* Background Overlay Graphics */}
-      <div className="absolute top-0 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-yellow-500 opacity-20 blur-3xl rounded-full" />
-      <div className="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500 opacity-20 blur-3xl rounded-full" />
+      <div className="absolute top-0 left-0 w-72 sm:w-96 h-72 sm:h-96 bg-yellow-500 opacity-40 dark:opacity-20 blur-3xl rounded-full" />
+      <div className="absolute bottom-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500 opacity-40 dark:opacity-20 blur-3xl rounded-full" />
 
       <div className="relative w-5/6 text-center lg:text-left grid content-center grid-cols-1 lg:grid-cols-2 xl:px-8 items-center z-10">
         {/* Left Side Content */}

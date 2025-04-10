@@ -12,7 +12,7 @@ h1,h2,h3, .nav-items{
   font-family: Helvetica;
 }
 body{
-  background-color: rgb(237, 237, 237);
+  background-color: rgb(246, 246, 246);
 }
 @media (prefers-color-scheme: dark) {
   body {
@@ -37,7 +37,7 @@ body{
   font-style: normal;
 }
 ::-webkit-scrollbar{
-  width: 10px;
+  width: 6px;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb{

@@ -54,12 +54,13 @@ const OtpStep = ({ userInfo, onNext, onBack }) => {
   return (
     <div className="w-full">
       <h2 className="text-3xl font-bold mb-6 text-center dark:text-white text-black">Verify Your Email</h2>
-      <p className="text-center dark:text-gray-300 text-gray-600">A verification code has been sent to {userInfo.email}</p>
+      <p className="text-center dark:text-gray-300 text-gray-600">A verification code has been sent to {userInfo.email?.toLowerCase().trim()}</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
         <div>
           <input
             type="number"
+            autoFocus
             placeholder="Enter 6-digit OTP"
             {...register("otp", {
               required: backendError ? false : "OTP is required",
@@ -78,7 +79,7 @@ const OtpStep = ({ userInfo, onNext, onBack }) => {
           <button
             type="button"
             onClick={handleResendOTP}
-            className={`text-yellow-500 ${resendCooldown > 0 ? "opacity-50 cursor-not-allowed" : "hover:underline"}`}
+            className={`text-blue-900 ${resendCooldown > 0 ? "opacity-50 cursor-not-allowed" : "hover:underline"}`}
             disabled={resendCooldown > 0}
           >
             {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : "Resend OTP"}

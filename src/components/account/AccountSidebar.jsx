@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Loader, LoaderCircle, LogOut, Menu, X } from "lucide-react";
-import { account } from "../../appwriteAuth/appwrite.config";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/asyncThunk/authThunk";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -68,7 +67,7 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
             </div>
 
             {/* Mobile Top Bar (Menu + Logout) */}
-            <div className="md:hidden flex items-center justify-between px-4 py-2">
+            <div className="md:hidden flex items-center justify-between py-2">
                 <button
                     onClick={() => setIsOpen(true)}
                     className="flex items-center gap-2 text-white hover:text-pink-400 transition-all"
@@ -108,7 +107,7 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
 
                 {/* Sidebar with Slide-in Transition */}
                 <div
-                    className={`relative bg-black/40 w-4/5 max-w-sm h-full backdrop-blur-lg border-r border-white/20 p-6 shadow-xl transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+                    className={`relative bg-black/40 w-4/5 max-w-sm h-full backdrop-blur-lg border-r border-white/20 p-2 py-4 shadow-xl transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
                 >
                     {/* Close Button */}
                     <button

@@ -1,8 +1,8 @@
 export const fulfilled = (response) => {
     return {
-        data: response.data.data,
-        status: response.data.statusCode,
-        message: response.data.message
+        data: response.data,
+        status: response.status,
+        message: response.message
     }
 }
 
@@ -11,6 +11,6 @@ export const rejected = (err) => {
         code: err.timestamp || null,
         status: err.status || "unknown",
         message: err.message || err.error || 'An error occurred while processing the request',
-        name: err.details || err.name || "NUll"
+        name: err.source || err.name || "NUll"
     }
 }

@@ -22,6 +22,7 @@ const BirthDateStep = ({ userInfo, onNext, onBack }) => {
         <div>
           <input
             type="date"
+            autoFocus
             {...register('dob', {
               required: 'Birth date is required',
               validate: (value) => {

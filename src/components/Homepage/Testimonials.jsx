@@ -12,7 +12,7 @@ export default function Testimonials() {
   const ref = useRef(null);
 
   return (
-    <section ref={ref} className="py-10  bg-gray-200 dark:bg-zinc-900">
+    <section ref={ref} className="py-10  dark:bg-zinc-900">
       <h2 className="text-3xl md:text-4xl px-4 font-bold text-center text-gray-900 dark:text-gray-200">
         What Our Premium Customers Say
       </h2>

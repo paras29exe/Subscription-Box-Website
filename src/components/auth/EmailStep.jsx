@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { account } from "../../appwriteAuth/appwrite.config";
 import Button from "./Button";
+import axiosInstance from "../../utils/axiosInstance";
 
 const EmailStep = ({ onNext, userInfo }) => {
   const { register, handleSubmit, formState: { errors }, setError } = useForm({
     defaultValues: { email: userInfo?.email || "" },
   });
-  const [loading, setLoading] = useState(false);
 
 
   const onSubmit = async (data) => {
     try {
-      setLoading(true)
-      await account.createEmailPasswordSession(data.email, "test"); // Attempt login with a fake password
+      // if email does not exist in system then proceed to next step
+      await axiosInstance.post("/auth/check-email-existence", { email: data.email });
+      onNext(data)
     } catch (error) {
-      if (error.code === 401) {
-        setError("email", { type: "manual", message: "Email is already registered" });
-      } else  {
-        onNext(data);
-      }
-    } finally {
-      setLoading(false);
+      console.log(error)
+      setError("email", { type: "manual", message: error.response.data.message });
     }
   };
 
@@ -34,6 +29,7 @@ const EmailStep = ({ onNext, userInfo }) => {
         <div>
           <input
             type="email"
+            autoFocus
             placeholder="Email Address"
             {...register("email", {
               required: "Email is required",
@@ -47,7 +43,7 @@ const EmailStep = ({ onNext, userInfo }) => {
           />
           {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
         </div>
-        <Button text="Continue" loading={loading} />
+        <Button text="Continue"/>
       </form>
     </div>
   );

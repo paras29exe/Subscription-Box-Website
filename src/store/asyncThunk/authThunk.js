@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { account, ID } from "../../appwriteAuth/appwrite.config.js";
 import { fulfilled, rejected } from "../../utils/responses";
+import axiosInstance from "../../utils/axiosInstance.js";
 
 // Signup Thunk (Direct Appwrite Call)
 export const signupUser = createAsyncThunk(
@@ -9,26 +9,10 @@ export const signupUser = createAsyncThunk(
         email = email.toLowerCase().trim()
 
         try {
-            const newUser = await account.create(ID.unique(), email, password, name);
-            try {
-                account.deleteSessions()
-            } catch (error) {
-
-            }
-            await account.createEmailPasswordSession(email, password);
-            await account.createJWT();
-            const user = await account.get();
-            // const pwHash = await bcrypt.hash(password, 10)
-
-            await account.updatePrefs({
-                dob,
-                avatar: `https://api.dicebear.com/7.x/initials/svg?seed=${name}&backgroundType=gradientLinear`,
-                key: password
-            });
-
-            return user;
+            const response = await axiosInstance.post("/auth/signup", { email, password, name, dob });
+            return fulfilled(response.data);
         } catch (error) {
-            return rejectWithValue(rejected(error || "Signup failed"));
+            return rejectWithValue(rejected(error.response.data));            
         }
     }
 );
@@ -39,34 +23,10 @@ export const loginUser = createAsyncThunk(
     async ({ email, password }, { rejectWithValue }) => {
         email = email.toLowerCase().trim()
         try {
-            const session = await account.getSession('current');
-
-            if (session) {
-                const loggedUser = await account.get();
-                const isPwSame = password === loggedUser.prefs.key
-
-                if (loggedUser.email === email && !isPwSame) {
-                    return rejectWithValue(rejected({ message: "Wrong Password entered. Please Retry" }));
-                } else if (loggedUser.email === email && isPwSame) {
-                    return loggedUser;
-                } else {
-                    await account.deleteSession(session.$id)
-                }
-            }
+            const response = await axiosInstance.post("/auth/login", { email, password });
+            return fulfilled(response.data);
         } catch (error) {
-
-        }
-
-        try {
-
-            await account.createEmailPasswordSession(email, password);
-            await account.createJWT();
-            const user = await account.get();
-
-            console.log(user)
-            return user;
-        } catch (error) {
-            return rejectWithValue(rejected(error || "Login failed"));
+            return rejectWithValue(rejected(error.response?.data));
         }
     }
 );
@@ -76,23 +36,35 @@ export const autoLogin = createAsyncThunk(
     "auth/autoLogin",
     async (_, { rejectWithValue }) => {
         try {
-            const user = await account.get();
-            return user;
+            const response = await axiosInstance.post("/auth/auto-login");
+            return fulfilled(response.data);
         } catch (error) {
-            return rejectWithValue(rejected(error || "Auto Login Failed"));
+            return rejectWithValue(rejected(error.response.data));
         }
     }
 );
+
+export const changePassword = createAsyncThunk(
+    "auth/changePassword",
+    async ({ currentPassword, newPassword }, { rejectWithValue }) => {
+        try {
+            const response = await axiosInstance.post("/auth/change-password", { oldPassword : currentPassword, newPassword });
+            return fulfilled(response.data);
+        } catch (error) {
+            return rejectWithValue(rejected(error.response.data));
+        }
+    }
+)
 
 // Logout Thunk
 export const logoutUser = createAsyncThunk(
     "auth/logoutUser",
     async (_, { rejectWithValue }) => {
         try {
-            await account.deleteSessions();
+            const response = await axiosInstance.post("/auth/logout");
             return true;
         } catch (error) {
-            return rejectWithValue(rejected(error || "Logout failed"));
+            return rejectWithValue(rejected(error.response.data));
         }
     }
 );

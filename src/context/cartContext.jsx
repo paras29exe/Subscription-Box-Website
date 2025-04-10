@@ -38,10 +38,6 @@ export const CartContextProvider = ({ children }) => {
     setTotalItems((prevTotal) => prevTotal - 1);
   };
 
-  const showPopup = () => {
-    toast.warn("You need to be logged in to for this action!", { toastId: "auth-warning", className:"text-black" });
-  }
-
   const clearCart = () => {
     setCart({
       books: [],
@@ -53,7 +49,7 @@ export const CartContextProvider = ({ children }) => {
 
   // your cart logic here
   return (
-    <cartContext.Provider value={{ cart, setCart, addItem, removeItem, activeGenre, setActiveGenre, totalItems, showPopup }}>
+    <cartContext.Provider value={{ cart, setCart, addItem, removeItem, activeGenre, setActiveGenre, totalItems }}>
       {children}
     </cartContext.Provider>
   )

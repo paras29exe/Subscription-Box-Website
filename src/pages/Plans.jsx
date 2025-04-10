@@ -7,6 +7,8 @@ import Lottie from "lottie-react";
 import comingSoonAnimation from "../assets/coming-soon.json";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cartContext";
+import PopupModal from "../utils/PopupModal";
+import { useDisplayContext } from "../context/displayContext";
 
 const genres = [
   {
@@ -79,7 +81,9 @@ export default function SubscriptionPlans() {
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [planPrices, setPlanPrices] = useState([]);
-  
+
+  const {showPopup, setShowPopup} = useDisplayContext()
+
   const plansRef = useRef(null);
   const btnRef = useRef(null)
   const navigate = useNavigate();
@@ -101,14 +105,43 @@ export default function SubscriptionPlans() {
     }, 300);
   }
 
+  const handleRazorpayPayment = () => {
+      const options = {
+        key: "rzp_test_E7Vb1pOzmgqoWo", // Replace with your Razorpay Key ID
+        amount: 19497, // Amount in paise = ₹500
+        currency: "INR",
+        name: "GetMeABox",
+        description: "Test Transaction",
+        image: "/favico.png", // Optional: your site logo
+        handler: function (response) {
+          toast.success(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+        },
+        prefill: {
+          name: "Test User",
+          email: "testuser@example.com",
+          contact: "9999999999",
+        },
+        notes: {
+          subscription_type: "monthly",
+        },
+        theme: {
+          color: "#0f172a", // Tailwind dark slate
+        },
+      };
+    
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+      setShowPopup(false);
+    };
+
   useEffect(() => {
     setPlanPrices(genrePrices.find((g) => g.genre === selectedGenre?.toLowerCase())?.prices || []);
 
   }, [selectedGenre]);
 
   return (
-    <section className=" p-4 md:p-6 lg:p-8 transition-all">
-      <h2 className="text-3xl sm:text-5xl font-bold text-center mb-4 text-indigo-600 dark:text-indigo-400">Choose Your Subscription</h2>
+    <section className="p-4 md:p-6 lg:p-8 transition-all">
+      <h2 className="text-xl sm:text-3xl lg:text-5xl font-bold text-center text-indigo-600 dark:text-indigo-400">Choose Your Subscription</h2>
       <h3 className="text-center text-gray-700 dark:text-gray-300 mb-3">Pick your favorite genre and subscription plan.</h3>
 
       {/* Step 1: Choose Genre */}
@@ -158,8 +191,7 @@ export default function SubscriptionPlans() {
           <motion.button
             ref={btnRef}
             onClick={() => {
-              setActiveGenre(selectedGenre)
-              navigate("/cart")
+              setShowPopup(true)
             }}
             whileHover={{ scale: 1.1 }}
             className="px-8 py-4 bg-indigo-600 text-white font-semibold rounded-full shadow-md hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-all"
@@ -167,7 +199,17 @@ export default function SubscriptionPlans() {
             Proceed
           </motion.button>
         </div>
+
       )}
+      <PopupModal
+        isOpen={showPopup}
+        mainText={"Confirm Subscription?"}
+        infoText={"This will take you to the checkout process."}
+        successBtnText={"Confirm"}
+        cancelBtnText={"Cancel"}
+        onSuccess={handleRazorpayPayment}
+        onCancel={() => setShowPopup(false)}
+      />
     </section>
   );
 }

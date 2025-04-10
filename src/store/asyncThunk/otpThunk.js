@@ -4,6 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 export const requestOtp = createAsyncThunk(
     "otp/request",
     async (email, { rejectWithValue }) => {
+        email = email.toLowerCase().trim();
         try {
             const response = await axiosInstance.post("/otp/request", { email });
             return response.data;
@@ -16,6 +17,7 @@ export const requestOtp = createAsyncThunk(
 export const verifyOtp = createAsyncThunk(
     "otp/verify",
     async ({ email, otp }, { rejectWithValue }) => {
+        email = email.toLowerCase().trim();
         try {
             const response = await axiosInstance.post("/otp/verify", { email, otp });
             return response.data;

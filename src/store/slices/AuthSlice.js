@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, signupUser, logoutUser, autoLogin } from '../asyncThunk/authThunk.js';
+import { loginUser, signupUser, logoutUser, autoLogin, changePassword } from '../asyncThunk/authThunk.js';
 
 const initialState = {
     userData: null,
@@ -22,7 +22,7 @@ const authSlice = createSlice({
             })
             .addCase(signupUser.fulfilled, (state, action) => {
                 state.loading = false;
-                state.userData = action.payload; // Store user data
+                state.userData = action.payload.data; // Store user data
                 state.error = null;
             })
             .addCase(signupUser.rejected, (state, action) => {
@@ -36,7 +36,7 @@ const authSlice = createSlice({
             })
             .addCase(autoLogin.fulfilled, (state, action) => {
                 state.autoLogin = false;
-                state.userData = action.payload;
+                state.userData = action.payload.data;
                 state.error = null;
                 state.role = action.payload.user?.role || 'user'; // Assign role if available
             })
@@ -53,11 +53,24 @@ const authSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.loading = false;
-                state.userData = action.payload;
+                state.userData = action.payload.data;
                 state.error = null;
                 state.role = action.payload.user?.role || 'user'; // Assign role if available
             })
             .addCase(loginUser.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+
+            // change password case
+            .addCase(changePassword.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(changePassword.fulfilled, (state) => {
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(changePassword.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })

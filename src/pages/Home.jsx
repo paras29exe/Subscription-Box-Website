@@ -11,13 +11,19 @@ import { useSelector } from "react-redux";
 
 function Home() {
   return (
-    <div className="flex flex-col gap-4 overflow-x-hidden scroll-smooth">
+    <div className="flex flex-col gap-4 overflow-x-hidden scroll-smooth ">
       <Hero />
+      <div className="h-[2px] dark:hidden w-full bg-gray-500"></div>
 
       <Genres />
+      <div className="h-[2px] dark:hidden w-full bg-gray-500"></div>
 
       <HowItWorks />
+      <div className="h-[2px] dark:hidden w-full bg-gray-500"></div>
+
       <Testimonials />
+      <div className="h-[2px] dark:hidden w-full bg-gray-500"></div>
+
       <FAQ />
     </div>
   );

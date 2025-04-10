@@ -104,20 +104,20 @@ const ShippingAddressesTab = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
+      <div className="justify-between items-center">
         <h2 className="text-2xl font-semibold">Shipping Addresses</h2>
         
         <button
           onClick={startAddingAddress}
-          className="flex items-center px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white font-medium rounded-md transition-colors"
+          className="flex items-center ml-auto p-2 text-blue-700 font-medium rounded-md transition-colors"
         >
-          <Plus className="w-4 h-4 mr-2" />
+          <Plus className="w-4 h-4" />
           Add New Address
         </button>
       </div>
       
       {(isAddingAddress || editingAddressId) && (
-        <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg mb-6">
+        <div className="bg-gray-50 dark:bg-gray-900 md:p-6 rounded-lg mb-6">
           <h3 className="text-xl font-medium mb-4">
             {editingAddressId ? 'Edit Address' : 'Add New Address'}
           </h3>
