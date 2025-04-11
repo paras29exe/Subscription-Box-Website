@@ -21,10 +21,10 @@ const Sidebar = ({activeTab, setActiveTab}) => {
           <button
             key={tab.name}
             onClick={() => setActiveTab(tab.name)}
-            className={`w-full flex items-center text-left p-2 lg:p-4 rounded-lg transition-all duration-300 ${
+            className={`w-full flex items-center font-semibold text-left p-2 lg:p-4 rounded-lg transition-all duration-300 ${
               activeTab === tab.name
                 ? 'bg-gradient-to-br from-pink-700 via-purple-600 to-indigo-600 text-white font-medium shadow-lg'
-                : 'bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-600'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-200 hover:bg-gray-400 dark:hover:bg-gray-600'
             }`}
           >
             {tab.icon}

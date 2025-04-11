@@ -24,7 +24,7 @@ const AuthLayout = ({children}) => {
             />
 
             {/* Right side - Authentication Form */}
-            <div className="w-full flex-grow lg:flex-grow-0 lg:w-1/2 flex justify-center items-center max-lg:dark:bg-black/65 max-lg:bg-white/65 max-lg:backdrop-blur-[3px] ">
+            <div className="w-full flex-grow lg:flex-grow-0 lg:w-1/2 flex justify-center items-center max-lg:dark:bg-black/65 max-lg:bg-gray-200/65 max-lg:backdrop-blur-[3px] ">
                 <div className='w-full p-4  md:w-3/4 xl:w-3/5 lg:p-0 flex flex-col gap-y-20'>
                     <div className='mt-4 text-center sm:text-left text-nowrap'>
                         {pathname.includes("signup")

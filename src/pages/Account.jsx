@@ -33,7 +33,7 @@ const Account = () => {
           </div>
           
           {/* Main Content */}
-          <div className="w-full md:w-3/4 md:backdrop-blur-lg rounded-xl md:p-6 md:shadow-lg md:border md:border-white/20 md:dark:border-gray-700">
+          <div className="w-full md:w-3/4 md:backdrop-blur-lg rounded-xl md:p-6 md:shadow-lg md:border md:border-black/30 md:dark:border-gray-700">
             {renderTabContent()}
           </div>
         </div>

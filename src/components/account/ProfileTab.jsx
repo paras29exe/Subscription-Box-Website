@@ -73,7 +73,7 @@ const ProfileTab = () => {
     );
 
     return (
-        <div className="backdrop-blur-md rounded-2xl shadow-lg md:p-6">
+        <div className="backdrop-blur-md rounded-2xl  md:p-6">
             <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Profile Information</h2>
 
             <div className="space-y-4 mb-8">

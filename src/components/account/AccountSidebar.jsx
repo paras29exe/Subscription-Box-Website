@@ -31,7 +31,7 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
     return (
         <>
             {/* Desktop Sidebar */}
-            <div className="hidden md:block bg-black/30 w-full backdrop-blur-md border border-white/30 rounded-2xl shadow-lg p-2 md2:p-5">
+            <div className="hidden md:block w-full backdrop-blur-md border border-gray-700/40 dark:border-white/30 rounded-2xl shadow-lg p-2 md2:p-5">
                 <ul>
                     {tabs.map((tab) => (
                         <li key={tab.id} className="mb-2">
@@ -39,7 +39,7 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`w-full text-left md:text-base text-sm px-4 py-3 rounded-lg transition-all font-medium ${activeTab === tab.id
                                     ? "bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md"
-                                    : "hover:bg-white/10 text-gray-300"
+                                    : "hover:bg-white/10 text-gray-900 dark:text-gray-300"
                                     }`}
                             >
                                 {tab.label}
@@ -52,7 +52,7 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
                     <button
                         onClick={handleLogout}
                         disabled={loading}
-                        className="flex items-center w-full text-left px-4 py-3 text-red-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
+                        className="flex items-center w-full text-left px-4 py-3 text-red-700 dark:text-red-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
                     >
                         {loading ?
                             <LoaderCircle className="animate-spin mx-auto" size={24} />
