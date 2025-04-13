@@ -34,12 +34,12 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
             <div className="hidden md:block w-full backdrop-blur-md border border-gray-700/40 dark:border-white/30 rounded-2xl shadow-lg p-2 md2:p-5">
                 <ul>
                     {tabs.map((tab) => (
-                        <li key={tab.id} className="mb-2">
+                        <li key={tab.id} className="mb-2 ">
                             <button
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`w-full text-left md:text-base text-sm px-4 py-3 rounded-lg transition-all font-medium ${activeTab === tab.id
                                     ? "bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md"
-                                    : "hover:bg-white/10 text-gray-900 dark:text-gray-300"
+                                    : "dark:hover:bg-white/10 text-gray-900 hover:bg-black/10 dark:text-gray-300"
                                     }`}
                             >
                                 {tab.label}
@@ -70,7 +70,7 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
             <div className="md:hidden flex items-center justify-between py-2">
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="flex items-center gap-2 text-white hover:text-pink-400 transition-all"
+                    className="flex items-center gap-2 text-black dark:text-white hover:text-pink-400 transition-all"
                 >
                     <Menu size={22} />
                     <span>Menu</span>
@@ -97,22 +97,22 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
 
             {/* Mobile Sidebar (Drawer with Transition) */}
             <div
-                className={`fixed inset-0 z-50 flex transition-all ease-in-out duration-500 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                className={`fixed h-screen inset-0 z-50 flex transition-all ease-in-out duration-500 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
             >
                 {/* Backdrop */}
                 <div
-                    className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+                    className="absolute inset-0 bg-black/30 dark:bg-black/70 backdrop-blur-md"
                     onClick={() => setIsOpen(false)}
                 />
 
                 {/* Sidebar with Slide-in Transition */}
                 <div
-                    className={`relative bg-black/40 w-4/5 max-w-sm h-full backdrop-blur-lg border-r border-white/20 p-2 py-4 shadow-xl transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+                    className={`relative bg-white dark:bg-black/50 w-4/5 max-w-sm h-full backdrop-blur-lg border-r border-white/20 p-2 py-4 shadow-xl transform transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
                 >
                     {/* Close Button */}
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="absolute top-4 right-4 text-gray-300 hover:text-white"
+                        className="absolute top-4 right-4 text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
                     >
                         <X size={24} />
                     </button>
@@ -127,7 +127,7 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
                                     }}
                                     className={`w-full text-left text-base px-4 py-3 rounded-lg transition-all font-medium ${activeTab === tab.id
                                         ? "bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md"
-                                        : "hover:bg-white/10 text-gray-300"
+                                        : "text-gray-800 hover:text-black dark:hover:bg-white/10 dark:text-gray-300"
                                         }`}
                                 >
                                     {tab.label}
