@@ -4,6 +4,7 @@ import { Home, Plans, Customize, Orders, Account, Login, SignUp } from "./pages"
 import AuthLayout from "./components/auth/AuthLayout.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import NotFound from "./utils/NotFound.jsx";
+import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
                             <Account />
                         </ProtectedRoute>}
                 />
+                <Route path="terms" element={<TermsAndConditions />} />
             <Route path="*" element={<NotFound />} />
             </Route>
         </>

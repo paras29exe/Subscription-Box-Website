@@ -6,6 +6,7 @@ import LoadingScreen from './utils/LoadingScreen.jsx'
 import { autoLogin } from './store/asyncThunk/authThunk.js'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Footer from './components/Footer.jsx'
 
 function App() {
   const dispatch = useDispatch()
@@ -41,12 +42,13 @@ function App() {
         pauseOnHover={false}
         // theme="light"
       />
-      <div className='flex flex-col min-h-screen'>
+      <div className='flex flex-col overflow-x-hidden min-h-screen'>
         <Navbar />
         {/* <div className='flex-grow'> */}
         <Outlet />
         {/* </div> */}
       </div>
+      <Footer />
     </>
   )
 }

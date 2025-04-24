@@ -31,7 +31,7 @@ const AccountSidebar = ({ activeTab, setActiveTab }) => {
     return (
         <>
             {/* Desktop Sidebar */}
-            <div className="hidden md:block w-full backdrop-blur-md border border-gray-700/40 dark:border-white/30 rounded-2xl shadow-lg p-2 md2:p-5">
+            <div className="hidden md:flex flex-col w-full backdrop-blur-md border border-gray-700/40 dark:border-white/30 rounded-2xl shadow-lg p-2 md2:p-5">
                 <ul>
                     {tabs.map((tab) => (
                         <li key={tab.id} className="mb-2 ">
