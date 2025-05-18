@@ -42,7 +42,7 @@ function App() {
         pauseOnHover={false}
         // theme="light"
       />
-      <div className='flex flex-col overflow-x-hidden min-h-screen'>
+      <div className='flex flex-col min-h-screen'>
         <Navbar />
         {/* <div className='flex-grow'> */}
         <Outlet />
