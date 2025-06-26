@@ -7,9 +7,11 @@ import { autoLogin } from './store/asyncThunk/authThunk.js'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Footer from './components/Footer.jsx'
+import axios from 'axios'
 
 function App() {
   const dispatch = useDispatch()
+  const [serverStatus, setServerStatus] = useState(true)
   const [initialLoading, setInitialLoading] = useState(true)
 
   // auto login user from cookies on first load of website
@@ -18,14 +20,22 @@ function App() {
       try {
         await dispatch(autoLogin()).unwrap();
       } catch (error) {
-      }finally{
+      } finally {
         setInitialLoading(false)
       }
     }
-    autoLoginUser()
+    axios.get(import.meta.env.VITE_SERVER_BASE_URL + '/health')
+      .then(autoLoginUser)
+      .catch(err => {
+        setServerStatus(false);
+        setInitialLoading(false); // Stop loading if server is down
+        throw new Error('Server is down');
+      })
   }, [])
 
-  if(initialLoading) return <LoadingScreen />;
+  if (initialLoading) return (
+    <></>
+  );
 
   return (
     <>
@@ -40,7 +50,7 @@ function App() {
         pauseOnFocusLoss={false}
         draggable
         pauseOnHover={false}
-        // theme="light"
+      // theme="light"
       />
       <div className='flex flex-col min-h-screen'>
         <Navbar />
